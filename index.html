@@ -32,12 +32,14 @@
     body.lang-zh { font-family: 'Noto Sans SC', sans-serif; }
     body.lang-en { font-family: 'Jost', sans-serif; }
     body.lang-de { font-family: 'Jost', sans-serif; }
+    body.lang-es { font-family: 'Jost', sans-serif; }
 
     /* hide all lang spans by default, show only active */
-    .zh, .en, .de { display: none !important; }
+    .zh, .en, .de, .es { display: none !important; }
     body.lang-zh .zh { display: revert !important; }
     body.lang-en .en { display: revert !important; }
     body.lang-de .de { display: revert !important; }
+    body.lang-es .es { display: revert !important; }
 
     /* Noise */
     body::before {
@@ -168,7 +170,7 @@
       letter-spacing: 0.1em; margin-top: 4px;
     }
 
-    .lang-en .stat-label, .lang-de .stat-label { font-family: 'Jost', sans-serif; }
+    .lang-en .stat-label, .lang-de .stat-label, .lang-es .stat-label { font-family: 'Jost', sans-serif; }
 
     .hero-eyebrow {
       font-size: 11px; letter-spacing: 0.25em; color: var(--gold);
@@ -185,7 +187,7 @@
       line-height: 1.18; margin-bottom: 28px;
     }
 
-    .lang-en .hero-title, .lang-de .hero-title {
+    .lang-en .hero-title, .lang-de .hero-title, .lang-es .hero-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(36px, 4.5vw, 66px);
       line-height: 1.1; font-weight: 600;
@@ -199,7 +201,7 @@
       max-width: 380px; margin-bottom: 48px; font-weight: 300;
     }
 
-    .lang-en .hero-sub, .lang-de .hero-sub { font-family: 'Jost', sans-serif; font-size: 15px; line-height: 1.8; }
+    .lang-en .hero-sub, .lang-de .hero-sub, .lang-es .hero-sub { font-family: 'Jost', sans-serif; font-size: 15px; line-height: 1.8; }
 
     .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
@@ -344,7 +346,7 @@
       line-height: 1.2; margin-bottom: 20px;
     }
 
-    .lang-en .section-title, .lang-de .section-title {
+    .lang-en .section-title, .lang-de .section-title, .lang-es .section-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(30px, 3.8vw, 52px);
       font-weight: 600; line-height: 1.1;
@@ -355,7 +357,7 @@
       max-width: 520px; font-weight: 300;
     }
 
-    .lang-en .section-desc, .lang-de .section-desc { font-family: 'Jost', sans-serif; font-size: 15px; }
+    .lang-en .section-desc, .lang-de .section-desc, .lang-es .section-desc { font-family: 'Jost', sans-serif; font-size: 15px; }
 
     /* ── PRODUCTS ── */
     .products { background: var(--ink); }
@@ -405,7 +407,7 @@
       margin-bottom: 12px; font-weight: 600;
     }
 
-    .lang-en .product-name, .lang-de .product-name {
+    .lang-en .product-name, .lang-de .product-name, .lang-es .product-name {
       font-family: 'Cormorant Garamond', serif;
       font-size: 22px; font-weight: 600;
     }
@@ -415,7 +417,7 @@
       line-height: 1.8; font-weight: 300;
     }
 
-    .lang-en .product-desc, .lang-de .product-desc { font-family: 'Jost', sans-serif; }
+    .lang-en .product-desc, .lang-de .product-desc, .lang-es .product-desc { font-family: 'Jost', sans-serif; }
 
     .product-arrow {
       position: absolute; bottom: 32px; right: 32px;
@@ -464,10 +466,10 @@
       color: var(--ink); margin-bottom: 12px;
     }
 
-    .lang-en .step-title, .lang-de .step-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; }
+    .lang-en .step-title, .lang-de .step-title, .lang-es .step-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; }
 
     .step-desc { font-size: 13px; color: var(--mid); line-height: 1.8; font-weight: 300; }
-    .lang-en .step-desc, .lang-de .step-desc { font-family: 'Jost', sans-serif; }
+    .lang-en .step-desc, .lang-de .step-desc, .lang-es .step-desc { font-family: 'Jost', sans-serif; }
 
     /* ── WHY ── */
     .why { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; padding: 0; }
@@ -508,10 +510,10 @@
       margin-bottom: 6px; color: var(--ink);
     }
 
-    .lang-en .feature-title, .lang-de .feature-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; }
+    .lang-en .feature-title, .lang-de .feature-title, .lang-es .feature-title { font-family: 'Cormorant Garamond', serif; font-size: 20px; }
 
     .feature-desc { font-size: 13px; color: var(--mid); line-height: 1.7; font-weight: 300; }
-    .lang-en .feature-desc, .lang-de .feature-desc { font-family: 'Jost', sans-serif; }
+    .lang-en .feature-desc, .lang-de .feature-desc, .lang-es .feature-desc { font-family: 'Jost', sans-serif; }
 
     /* ── CERTS ── */
     .certs { background: var(--warm-white); text-align: center; }
@@ -572,7 +574,7 @@
       font-size: 24px; color: var(--warm-white); margin-bottom: 32px; font-weight: 600;
     }
 
-    .lang-en .form-title, .lang-de .form-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; }
+    .lang-en .form-title, .lang-de .form-title, .lang-es .form-title { font-family: 'Cormorant Garamond', serif; font-size: 30px; }
 
     .form-group { margin-bottom: 18px; }
 
@@ -678,24 +680,27 @@
       <div class="nav-brand-zh zh">米彩包装（温州）有限公司<small>MICAI PACKAGING · WENZHOU</small></div>
       <div class="nav-brand-en en">MICAI Packaging<small>WENZHOU CO., LTD</small></div>
       <div class="nav-brand-en de">MICAI Packaging<small>WENZHOU CO., LTD</small></div>
+      <div class="nav-brand-en es">MICAI Packaging<small>WENZHOU CO., LTD</small></div>
     </div>
   </div>
   <div class="nav-right">
     <ul class="nav-links">
-      <li><a href="#products"><span class="zh">产品中心</span><span class="en">Products</span><span class="de">Produkte</span></a></li>
-      <li><a href="#process"><span class="zh">生产工艺</span><span class="en">Process</span><span class="de">Prozess</span></a></li>
-      <li><a href="#why"><span class="zh">关于我们</span><span class="en">About</span><span class="de">Über uns</span></a></li>
-      <li><a href="#contact"><span class="zh">联系我们</span><span class="en">Contact</span><span class="de">Kontakt</span></a></li>
+      <li><a href="#products"><span class="zh">产品中心</span><span class="en">Products</span><span class="de">Produkte</span><span class="es">Productos</span><span class="es">Productos</span></a></li>
+      <li><a href="#process"><span class="zh">生产工艺</span><span class="en">Process</span><span class="de">Prozess</span><span class="es">Proceso</span><span class="es">Proceso</span></a></li>
+      <li><a href="#why"><span class="zh">关于我们</span><span class="en">About</span><span class="de">Über uns</span><span class="es">Nosotros</span><span class="es">Nosotros</span></a></li>
+      <li><a href="#contact"><span class="zh">联系我们</span><span class="en">Contact</span><span class="de">Kontakt</span><span class="es">Contacto</span></a></li>
     </ul>
     <div class="lang-toggle">
       <button class="lang-btn active" id="btnZH" onclick="setLang('zh')">中文</button>
       <button class="lang-btn" id="btnEN" onclick="setLang('en')">EN</button>
       <button class="lang-btn" id="btnDE" onclick="setLang('de')">DE</button>
+      <button class="lang-btn" id="btnES" onclick="setLang('es')">ES</button>
     </div>
     <a class="nav-cta" href="#contact">
       <span class="zh">获取报价</span>
       <span class="en">Get a Quote</span>
       <span class="de">Angebot anfragen</span>
+      <span class="es">Pedir cotización</span>
     </a>
   </div>
 </nav>
@@ -709,18 +714,21 @@
         <span class="stat-label zh">年行业经验</span>
         <span class="stat-label en">Years Experience</span>
         <span class="stat-label de">Jahre Erfahrung</span>
+        <span class="stat-label es">Años de experiencia</span>
       </div>
       <div class="stat">
         <span class="stat-num">500+</span>
         <span class="stat-label zh">品牌客户</span>
         <span class="stat-label en">Brand Clients</span>
         <span class="stat-label de">Markenkunden</span>
+        <span class="stat-label es">Clientes de marca</span>
       </div>
       <div class="stat">
         <span class="stat-num">30+</span>
         <span class="stat-label zh">出口国家</span>
         <span class="stat-label en">Export Countries</span>
         <span class="stat-label de">Exportländer</span>
+        <span class="stat-label es">Países de exportación</span>
       </div>
     </div>
 
@@ -728,18 +736,21 @@
       <span class="zh">高端纸制礼盒定制专家</span>
       <span class="en">Premium Paper Gift Box Manufacturer</span>
       <span class="de">Hersteller von Premium-Geschenkboxen</span>
+      <span class="es">Fabricante de Cajas de Regalo Premium</span>
     </div>
 
     <h1 class="hero-title">
       <span class="zh">匠心制造<br /><em>精美礼盒</em><br />彰显品牌价值</span>
       <span class="en">Crafting<br /><em>Exceptional</em><br />Gift Packaging</span>
       <span class="de">Meisterhafte<br /><em>Geschenkboxen</em><br />für Ihre Marke</span>
+      <span class="es">Creando<br /><em>Cajas de Regalo</em><br />Excepcionales</span>
     </h1>
 
     <p class="hero-sub">
       <span class="zh">米彩包装专注高端纸制礼盒研发与制造，深耕行业十余年，以精湛工艺与严苛品控，为全球品牌提供差异化包装解决方案。</span>
       <span class="en">MICAI Packaging specializes in premium paper gift box design and manufacturing. With over 15 years of expertise and rigorous quality standards, we deliver bespoke packaging solutions for global brands.</span>
       <span class="de">MICAI Packaging ist spezialisiert auf die Entwicklung und Fertigung hochwertiger Papier-Geschenkboxen. Mit über 15 Jahren Erfahrung und strengsten Qualitätsstandards liefern wir maßgeschneiderte Verpackungslösungen für globale Marken.</span>
+      <span class="es">MICAI Packaging se especializa en el diseño y fabricación de cajas de regalo de papel premium. Con más de 15 años de experiencia y rigurosos estándares de calidad, ofrecemos soluciones de packaging a medida para marcas globales.</span>
     </p>
 
     <div class="hero-actions">
@@ -747,11 +758,13 @@
         <span class="zh">探索产品</span>
         <span class="en">Explore Products</span>
         <span class="de">Produkte entdecken</span>
+        <span class="es">Ver productos</span>
       </a>
       <a class="btn-ghost" href="#contact">
         <span class="zh">获取定制报价</span>
         <span class="en">Request a Custom Quote</span>
         <span class="de">Angebot anfordern</span>
+        <span class="es">Solicitar cotización</span>
       </a>
     </div>
   </div>
@@ -772,6 +785,7 @@
         <div class="hero-center-text zh zh-text">米彩包装</div>
         <div class="hero-center-text en en-text">MICAI<br/>PACKAGING</div>
         <div class="hero-center-text de en-text">MICAI<br/>PACKAGING</div>
+        <div class="hero-center-text es en-text">MICAI<br/>PACKAGING</div>
       </div>
     </div>
     <div class="hero-scroll-hint">
@@ -779,6 +793,7 @@
       <span class="zh">向下探索</span>
       <span class="en">Scroll</span>
       <span class="de">Scrollen</span>
+      <span class="es">Explorar</span>
     </div>
   </div>
 </section>
@@ -789,27 +804,35 @@
     <span class="marquee-item zh">礼品盒定制</span>
     <span class="marquee-item en">Custom Gift Boxes</span>
     <span class="marquee-item de">Individuelle Geschenkboxen</span>
+    <span class="marquee-item es">Cajas de regalo personalizadas</span>
     <span class="marquee-item zh">天地盖包装</span>
     <span class="marquee-item en">Rigid Box Packaging</span>
     <span class="marquee-item de">Starre Boxverpackung</span>
+    <span class="marquee-item es">Embalaje de caja rígida</span>
     <span class="marquee-item zh">磁吸礼盒</span>
     <span class="marquee-item en">Magnetic Closure Boxes</span>
     <span class="marquee-item de">Magnetverschluss-Boxen</span>
+    <span class="marquee-item es">Cajas con cierre magnético</span>
     <span class="marquee-item zh">抽屉式礼盒</span>
     <span class="marquee-item en">Drawer Slide Boxes</span>
     <span class="marquee-item de">Schubladenboxen</span>
+    <span class="marquee-item es">Cajas cajón deslizante</span>
     <span class="marquee-item zh">烫金工艺</span>
     <span class="marquee-item en">Foil Stamping</span>
     <span class="marquee-item de">Folienprägung</span>
+    <span class="marquee-item es">Estampado en folio</span>
     <span class="marquee-item zh">环保材质</span>
     <span class="marquee-item en">FSC Certified</span>
     <span class="marquee-item de">FSC-Zertifiziert</span>
+    <span class="marquee-item es">Certificado FSC</span>
     <span class="marquee-item zh">UV印刷</span>
     <span class="marquee-item en">UV Printing</span>
     <span class="marquee-item de">UV-Druck</span>
+    <span class="marquee-item es">Impresión UV</span>
     <span class="marquee-item zh">出口品质</span>
     <span class="marquee-item en">Export Quality</span>
     <span class="marquee-item de">Exportqualität</span>
+    <span class="marquee-item es">Calidad de exportación</span>
     <!-- duplicate -->
     <span class="marquee-item zh">礼品盒定制</span>
     <span class="marquee-item en">Custom Gift Boxes</span>
@@ -846,17 +869,20 @@
         <span class="zh">产品中心</span>
         <span class="en">Our Products</span>
         <span class="de">Unsere Produkte</span>
+      <span class="es">Nuestros Productos</span>
       </div>
       <h2 class="section-title">
         <span class="zh">为每一个<br />品牌量身定制</span>
         <span class="en">Tailored for<br />Every Brand</span>
         <span class="de">Maßgeschneidert<br />für jede Marke</span>
+        <span class="es">A medida para<br />cada marca</span>
       </h2>
     </div>
     <p class="section-desc">
       <span class="zh">从概念到成品，我们提供全品类纸制礼盒解决方案，满足不同场景、不同行业的包装需求，让您的产品在货架上脱颖而出。</span>
       <span class="en">From concept to finished product, we offer a full range of paper gift box solutions. Whatever your industry or occasion, we make your product stand out on the shelf.</span>
       <span class="de">Vom Konzept bis zum Fertigprodukt bieten wir ein vollständiges Sortiment an Papier-Geschenkboxlösungen. Egal welche Branche oder Anlass — wir lassen Ihr Produkt im Regal hervorstechen.</span>
+      <span class="es">Del concepto al producto terminado, ofrecemos una gama completa de cajas de regalo de papel. Sea cual sea su sector u ocasión, hacemos que su producto destaque en el estante.</span>
     </p>
   </div>
   <div class="products-grid">
@@ -865,9 +891,11 @@
       <div class="product-name zh">天地盖礼盒</div>
       <div class="product-name en">Rigid Lid & Base Box</div>
       <div class="product-name de">Starre Deckel-Boden-Box</div>
+      <div class="product-name es">Caja Tapa y Base Rígida</div>
       <p class="product-desc zh">经典两片式结构，适用于高档礼品、茶叶、服饰等，稳固耐用，展示效果极佳。</p>
       <p class="product-desc en">Classic two-piece construction ideal for premium gifts, apparel and tea. Sturdy structure with outstanding shelf presence.</p>
       <p class="product-desc de">Klassische zweiteilige Konstruktion, ideal für hochwertige Geschenke, Kleidung und Tee. Robust und mit hervorragender Wirkung im Regal.</p>
+      <p class="product-desc es">Construcción clásica de dos piezas ideal para regalos premium, ropa y té. Resistente y con una presentación en estante inigualable.</p>
       <div class="product-arrow">→</div>
     </div>
     <div class="product-card reveal">
@@ -875,9 +903,11 @@
       <div class="product-name zh">磁吸翻盖礼盒</div>
       <div class="product-name en">Magnetic Closure Box</div>
       <div class="product-name de">Box mit Magnetverschluss</div>
+      <div class="product-name es">Caja con Cierre Magnético</div>
       <p class="product-desc zh">内嵌磁铁设计，开合顺滑，常用于高端护肤品、电子产品、珠宝配饰包装。</p>
       <p class="product-desc en">Embedded magnets for a smooth, satisfying open. Perfect for luxury skincare, electronics and jewellery packaging.</p>
       <p class="product-desc de">Eingebettete Magnete für ein sanftes, befriedigendes Öffnen. Ideal für Luxus-Kosmetik, Elektronik und Schmuck.</p>
+      <p class="product-desc es">Imanes integrados para una apertura suave y satisfactoria. Perfecta para cosmética de lujo, electrónica y joyería.</p>
       <div class="product-arrow">→</div>
     </div>
     <div class="product-card reveal">
@@ -885,9 +915,11 @@
       <div class="product-name zh">抽屉式礼盒</div>
       <div class="product-name en">Drawer Slide Box</div>
       <div class="product-name de">Schubladen-Geschenkbox</div>
+      <div class="product-name es">Caja Cajón Deslizante</div>
       <p class="product-desc zh">抽拉式开盖体验，仪式感强，广泛应用于巧克力、配饰、酒品等精品礼赠场景。</p>
       <p class="product-desc en">Tactile slide-out reveal with strong unboxing ritual. Widely used for chocolates, accessories and premium spirits.</p>
       <p class="product-desc de">Ausziehbares Öffnungserlebnis mit starkem Unboxing-Effekt. Beliebt für Schokolade, Accessoires und edle Spirituosen.</p>
+      <p class="product-desc es">Revelación deslizante con gran ritual de unboxing. Muy usado para chocolates, accesorios y licores premium.</p>
       <div class="product-arrow">→</div>
     </div>
     <div class="product-card reveal">
@@ -895,9 +927,11 @@
       <div class="product-name zh">异形创意礼盒</div>
       <div class="product-name en">Custom Shape Box</div>
       <div class="product-name de">Sonderform-Box</div>
+      <div class="product-name es">Caja de Forma Especial</div>
       <p class="product-desc zh">打破常规方形结构，六角形、心形、提篮形等多种异形定制，彰显品牌个性。</p>
       <p class="product-desc en">Break the mould with hexagonal, heart-shaped or handle-basket structures that make your brand unforgettable.</p>
       <p class="product-desc de">Brechen Sie aus dem Standard-Quadrat aus: sechseckig, herzförmig oder als Körbchen — unvergesslich für Ihre Marke.</p>
+      <p class="product-desc es">Salga del molde estándar: hexagonal, en forma de corazón o de cesta — diseños que hacen su marca inolvidable.</p>
       <div class="product-arrow">→</div>
     </div>
     <div class="product-card reveal">
@@ -905,9 +939,11 @@
       <div class="product-name zh">茶叶 / 食品礼盒</div>
       <div class="product-name en">Tea & Food Gift Box</div>
       <div class="product-name de">Tee- & Lebensmittel-Geschenkbox</div>
+      <div class="product-name es">Caja para Té y Alimentos</div>
       <p class="product-desc zh">符合食品级环保标准，防潮防变形，精致呈现茶叶、滋补品等高端食品品牌形象。</p>
       <p class="product-desc en">Food-grade, moisture-resistant materials that protect and elevate premium tea, supplements and gourmet products.</p>
       <p class="product-desc de">Lebensmittelgerechte, feuchtigkeitsbeständige Materialien für Tee, Nahrungsergänzungsmittel und Gourmetprodukte.</p>
+      <p class="product-desc es">Materiales aptos para alimentos y resistentes a la humedad, para proteger y realzar tés, suplementos y productos gourmet.</p>
       <div class="product-arrow">→</div>
     </div>
     <div class="product-card reveal">
@@ -915,9 +951,11 @@
       <div class="product-name zh">节日主题礼盒</div>
       <div class="product-name en">Seasonal Gift Box</div>
       <div class="product-name de">Saisonale Geschenkbox</div>
+      <div class="product-name es">Caja de Regalo Estacional</div>
       <p class="product-desc zh">春节、中秋、圣诞等节日专属礼盒设计，节日氛围感十足，助力品牌季节营销。</p>
       <p class="product-desc en">Chinese New Year, Mid-Autumn, Christmas and beyond. Season-specific designs that supercharge your campaign sales.</p>
       <p class="product-desc de">Chinesisches Neujahr, Weihnachten und mehr. Saison-spezifische Designs, die Ihren Kampagnenumsatz ankurbeln.</p>
+      <p class="product-desc es">Año Nuevo chino, Navidad y mucho más. Diseños de temporada que impulsan las ventas de sus campañas.</p>
       <div class="product-arrow">→</div>
     </div>
   </div>
@@ -930,16 +968,19 @@
       <span class="zh">生产工艺</span>
       <span class="en">Our Process</span>
       <span class="de">Unser Prozess</span>
+      <span class="es">Nuestro Proceso</span>
     </div>
     <h2 class="section-title">
       <span class="zh">精工四步<br />交付完美包装</span>
       <span class="en">Four Steps to<br />Perfect Packaging</span>
       <span class="de">Vier Schritte zur<br />perfekten Verpackung</span>
+      <span class="es">Cuatro pasos hacia<br />el embalaje perfecto</span>
     </h2>
     <p class="section-desc">
       <span class="zh">从需求确认到成品交付，每一步都有专属项目经理跟进，确保品质与时效两不误。</span>
       <span class="en">From brief to delivery, a dedicated project manager guides every step to ensure quality and on-time fulfilment.</span>
       <span class="de">Vom Briefing bis zur Lieferung begleitet ein dedizierter Projektmanager jeden Schritt für Qualität und Termintreue.</span>
+      <span class="es">Del briefing a la entrega, un gestor de proyectos dedicado supervisa cada paso para garantizar calidad y puntualidad.</span>
     </p>
   </div>
   <div class="process-steps">
@@ -948,36 +989,44 @@
       <div class="step-title zh">需求沟通</div>
       <div class="step-title en">Consultation</div>
       <div class="step-title de">Beratung</div>
+      <div class="step-title es">Consulta</div>
       <p class="step-desc zh">深入了解品牌调性、产品规格、使用场景，提供专业包装建议与材质推荐。</p>
       <p class="step-desc en">We explore your brand identity, product specs and use-case to recommend the ideal structure and materials.</p>
       <p class="step-desc de">Wir analysieren Ihre Markenidentität, Produktspezifikationen und den Verwendungszweck und empfehlen die optimale Struktur und Materialien.</p>
+      <p class="step-desc es">Analizamos su identidad de marca, especificaciones del producto y caso de uso para recomendar la estructura y materiales ideales.</p>
     </div>
     <div class="step reveal">
       <div class="step-num">02</div>
       <div class="step-title zh">设计打样</div>
       <div class="step-title en">Design & Sampling</div>
       <div class="step-title de">Design & Muster</div>
+      <div class="step-title es">Diseño y Muestras</div>
       <p class="step-desc zh">3D效果图确认后，7个工作日内完成实物样品，支持多轮修改直至满意。</p>
       <p class="step-desc en">3D mock-ups first, then a physical sample within 7 working days. We iterate until you are fully satisfied.</p>
       <p class="step-desc de">Zunächst 3D-Visualisierungen, dann ein physisches Muster innerhalb von 7 Werktagen. Wir überarbeiten, bis Sie vollständig zufrieden sind.</p>
+      <p class="step-desc es">Primero maquetas 3D, luego una muestra física en 7 días hábiles. Revisamos hasta que quede completamente satisfecho.</p>
     </div>
     <div class="step reveal">
       <div class="step-num">03</div>
       <div class="step-title zh">精工生产</div>
       <div class="step-title en">Precision Manufacturing</div>
       <div class="step-title de">Präzisionsfertigung</div>
+      <div class="step-title es">Fabricación de Precisión</div>
       <p class="step-desc zh">全程ISO标准管控，裱纸、压痕、成型、后工序，每道工序均有QC驻场检验。</p>
       <p class="step-desc en">ISO-controlled production with in-line QC at every stage — laminating, creasing, forming and finishing.</p>
       <p class="step-desc de">ISO-kontrollierte Produktion mit laufender QC-Prüfung bei jedem Schritt — Laminieren, Rillen, Formen und Veredelung.</p>
+      <p class="step-desc es">Producción controlada por ISO con control de calidad en cada etapa: laminado, marcado, formado y acabados.</p>
     </div>
     <div class="step reveal">
       <div class="step-num">04</div>
       <div class="step-title zh">准时交付</div>
       <div class="step-title en">On-Time Delivery</div>
       <div class="step-title de">Pünktliche Lieferung</div>
+      <div class="step-title es">Entrega Puntual</div>
       <p class="step-desc zh">标准款15–20天，加急服务可协商，支持海运/空运，配套完整出口单证。</p>
       <p class="step-desc en">Standard lead time 15–20 days. Rush orders negotiable. Sea and air freight with full export documentation.</p>
       <p class="step-desc de">Standard-Lieferzeit 15–20 Tage. Expressaufträge verhandelbar. See- und Luftfracht mit vollständiger Exportdokumentation.</p>
+      <p class="step-desc es">Plazo estándar de 15–20 días. Pedidos urgentes negociables. Flete marítimo y aéreo con documentación de exportación completa.</p>
     </div>
   </div>
 </section>
@@ -989,16 +1038,19 @@
       <span class="zh">核心优势</span>
       <span class="en">Why MICAI</span>
       <span class="de">Warum MICAI</span>
+      <span class="es">Por qué MICAI</span>
     </div>
     <h2 class="section-title">
       <span class="zh">选择米彩<br />选择品质保障</span>
       <span class="en">Quality You Can<br />Count On</span>
       <span class="de">Qualität, auf die<br />Sie zählen können</span>
+      <span class="es">Calidad en la que<br />puede confiar</span>
     </h2>
     <p class="section-desc">
       <span class="zh">深耕温州包装行业十五年，我们深知品牌客户对包装的每一分期待，用专业与诚信回报每一份信任。</span>
       <span class="en">Fifteen years rooted in Wenzhou's packaging industry. We understand exactly what brands expect — and consistently deliver it.</span>
       <span class="de">Fünfzehn Jahre in Wenzhaus Verpackungsindustrie verwurzelt. Wir wissen genau, was Marken erwarten — und liefern es zuverlässig.</span>
+      <span class="es">Quince años arraigados en la industria del embalaje de Wenzhou. Sabemos exactamente lo que las marcas esperan — y lo entregamos consistentemente.</span>
     </p>
   </div>
   <div class="why-right">
@@ -1008,9 +1060,11 @@
         <div class="feature-title zh">自有工厂 · 全程可控</div>
         <div class="feature-title en">Owned Factory · Full Control</div>
         <div class="feature-title de">Eigene Fabrik · Volle Kontrolle</div>
+        <div class="feature-title es">Fábrica Propia · Control Total</div>
         <p class="feature-desc zh">温州自有生产基地，2万㎡标准厂房，核心工序不外包，质量全程掌控，交期稳定可靠。</p>
         <p class="feature-desc en">20,000 m² owned facility in Wenzhou. All core processes kept in-house for consistent quality and reliable lead times.</p>
         <p class="feature-desc de">20.000 m² eigene Produktionsstätte in Wenzhou. Alle Kernprozesse im Haus für gleichbleibende Qualität und zuverlässige Lieferzeiten.</p>
+        <p class="feature-desc es">Instalación propia de 20.000 m² en Wenzhou. Todos los procesos clave se realizan en casa para una calidad constante y plazos fiables.</p>
       </div>
     </div>
     <div class="feature-item reveal">
@@ -1019,9 +1073,11 @@
         <div class="feature-title zh">小批量定制 · 灵活起订</div>
         <div class="feature-title en">Low MOQ · Flexible Orders</div>
         <div class="feature-title de">Niedrige Mindestmenge · Flexibel</div>
+        <div class="feature-title es">MOQ Bajo · Pedidos Flexibles</div>
         <p class="feature-desc zh">最低起订量可至300套，满足品牌新品试水、节日限量款等多样化需求，降低库存风险。</p>
         <p class="feature-desc en">MOQ from 300 units — ideal for new launches, limited editions and seasonal campaigns without excess inventory risk.</p>
         <p class="feature-desc de">Mindestmenge ab 300 Stück — ideal für Neueinführungen, limitierte Auflagen und saisonale Kampagnen ohne überschüssiges Lagerrisiko.</p>
+        <p class="feature-desc es">MOQ desde 300 unidades — ideal para nuevos lanzamientos, ediciones limitadas y campañas estacionales sin riesgo de exceso de inventario.</p>
       </div>
     </div>
     <div class="feature-item reveal">
@@ -1030,9 +1086,11 @@
         <div class="feature-title zh">环保材质 · 国际认证</div>
         <div class="feature-title en">Eco Materials · Global Certs</div>
         <div class="feature-title de">Öko-Materialien · Zertifiziert</div>
+        <div class="feature-title es">Materiales Eco · Certificados</div>
         <p class="feature-desc zh">FSC认证纸板、水性油墨印刷，满足欧美市场环保要求，助力品牌可持续发展理念落地。</p>
         <p class="feature-desc en">FSC-certified board and water-based inks meet EU and US sustainability requirements, supporting your brand's green commitments.</p>
         <p class="feature-desc de">FSC-zertifizierter Karton und wasserbasierte Farben erfüllen EU-Nachhaltigkeitsanforderungen und unterstützen die Umweltziele Ihrer Marke.</p>
+        <p class="feature-desc es">Cartón certificado FSC y tintas a base de agua que cumplen los requisitos de sostenibilidad de la UE y respaldan el compromiso ecológico de su marca.</p>
       </div>
     </div>
     <div class="feature-item reveal">
@@ -1041,9 +1099,11 @@
         <div class="feature-title zh">出口经验 · 全球服务</div>
         <div class="feature-title en">Export Expertise · Global Reach</div>
         <div class="feature-title de">Exporterfahrung · Weltweit</div>
+        <div class="feature-title es">Experiencia Exportadora · Global</div>
         <p class="feature-desc zh">产品远销欧美、东南亚、中东30+国家，熟悉各地区包装法规与物流要求，一站式对接无忧。</p>
         <p class="feature-desc en">Exporting to 30+ countries across Europe, North America, Southeast Asia and the Middle East. One point of contact, zero logistics headaches.</p>
         <p class="feature-desc de">Export in 30+ Länder in Europa, Nordamerika, Südostasien und dem Nahen Osten. Ein Ansprechpartner, keinerlei Logistikprobleme.</p>
+        <p class="feature-desc es">Exportamos a más de 30 países en Europa, América del Norte, Sudeste Asiático y Oriente Medio. Un solo punto de contacto, cero complicaciones logísticas.</p>
       </div>
     </div>
   </div>
@@ -1055,11 +1115,13 @@
     <span class="zh">资质认证</span>
     <span class="en">Certifications</span>
     <span class="de">Zertifizierungen</span>
+    <span class="es">Certificaciones</span>
   </div>
   <h2 class="section-title" style="text-align:center;">
     <span class="zh">品质背书 · 值得信赖</span>
     <span class="en">Certified Quality · Trusted Worldwide</span>
     <span class="de">Zertifizierte Qualität · Weltweit vertraut</span>
+    <span class="es">Calidad Certificada · Confianza Mundial</span>
   </h2>
   <div class="certs-grid">
     <div class="cert-item">
@@ -1080,7 +1142,7 @@
     </div>
     <div class="cert-item">
       <div class="cert-badge">🏆</div>
-      <div class="cert-name"><span class="zh">浙江省优质产品</span><span class="en">Zhejiang Quality Award</span><span class="de">Zhejiang Qualitätspreis</span></div>
+      <div class="cert-name"><span class="zh">浙江省优质产品</span><span class="en">Zhejiang Quality Award</span><span class="de">Zhejiang Qualitätspreis</span><span class="es">Premio Calidad Zhejiang</span></div>
     </div>
   </div>
 </section>
@@ -1092,38 +1154,42 @@
       <span class="zh">联系我们</span>
       <span class="en">Get in Touch</span>
       <span class="de">Kontakt aufnehmen</span>
+      <span class="es">Póngase en contacto</span>
     </div>
     <h2 class="section-title">
       <span class="zh">开始您的<br />专属定制之旅</span>
       <span class="en">Start Your<br />Custom Journey</span>
       <span class="de">Starten Sie Ihre<br />individuelle Reise</span>
+      <span class="es">Inicie su viaje<br />de personalización</span>
     </h2>
     <p class="section-desc">
       <span class="zh">填写询盘表单，我们的包装顾问将在24小时内与您联系，为您提供专业的包装解决方案。</span>
       <span class="en">Fill in the enquiry form and a packaging consultant will respond within 24 hours with a tailored solution.</span>
       <span class="de">Füllen Sie das Anfrage-Formular aus und ein Verpackungsberater meldet sich innerhalb von 24 Stunden mit einer maßgeschneiderten Lösung.</span>
+      <span class="es">Complete el formulario y un consultor de embalaje le responderá en 24 horas con una solución personalizada.</span>
     </p>
     <div class="contact-info">
       <div class="contact-row">
         <div class="contact-icon">📍</div>
         <div>
-          <div class="contact-label"><span class="zh">工厂地址</span><span class="en">Factory Address</span><span class="de">Werksadresse</span></div>
+          <div class="contact-label"><span class="zh">工厂地址</span><span class="en">Factory Address</span><span class="de">Werksadresse</span><span class="es">Dirección de fábrica</span></div>
           <div class="contact-val zh">浙江省温州市龙港市物流大道1588号</div>
           <div class="contact-val en">No. 1588, Logistics Avenue, Longgang, Wenzhou, Zhejiang, China</div>
           <div class="contact-val de">Nr. 1588, Logistics Avenue, Longgang, Wenzhou, Zhejiang, China</div>
+          <div class="contact-val es">Avda. Logística 1588, Longgang, Wenzhou, Zhejiang, China</div>
         </div>
       </div>
       <div class="contact-row">
         <div class="contact-icon">📞</div>
         <div>
-          <div class="contact-label"><span class="zh">联系电话</span><span class="en">Phone</span><span class="de">Telefon</span></div>
+          <div class="contact-label"><span class="zh">联系电话</span><span class="en">Phone</span><span class="de">Telefon</span><span class="es">Teléfono</span></div>
           <div class="contact-val">+86 0577 - XXXX XXXX</div>
         </div>
       </div>
       <div class="contact-row">
         <div class="contact-icon">✉️</div>
         <div>
-          <div class="contact-label"><span class="zh">电子邮箱</span><span class="en">Email</span><span class="de">E-Mail</span></div>
+          <div class="contact-label"><span class="zh">电子邮箱</span><span class="en">Email</span><span class="de">E-Mail</span><span class="es">Correo electrónico</span></div>
           <div class="contact-val">sales@micai-packaging.com</div>
         </div>
       </div>
@@ -1134,6 +1200,7 @@
           <div class="contact-val zh">扫码添加业务顾问</div>
           <div class="contact-val en">Scan to add our sales consultant</div>
           <div class="contact-val de">QR-Code scannen für unseren Berater</div>
+          <div class="contact-val es">Escanee el código QR para contactar a nuestro asesor</div>
         </div>
       </div>
     </div>
@@ -1143,19 +1210,20 @@
     <div class="form-title zh">发送询盘</div>
     <div class="form-title en">Send an Enquiry</div>
     <div class="form-title de">Anfrage senden</div>
+    <div class="form-title es">Enviar consulta</div>
     <div class="form-row">
       <div class="form-group">
-        <label class="form-label"><span class="zh">您的姓名 *</span><span class="en">Full Name *</span><span class="de">Ihr Name *</span></label>
+        <label class="form-label"><span class="zh">您的姓名 *</span><span class="en">Full Name *</span><span class="de">Ihr Name *</span><span class="es">Su nombre *</span></label>
         <input class="form-input" type="text" />
       </div>
       <div class="form-group">
-        <label class="form-label"><span class="zh">公司名称</span><span class="en">Company</span><span class="de">Unternehmen</span></label>
+        <label class="form-label"><span class="zh">公司名称</span><span class="en">Company</span><span class="de">Unternehmen</span><span class="es">Empresa</span></label>
         <input class="form-input" type="text" />
       </div>
     </div>
     <div class="form-row">
       <div class="form-group">
-        <label class="form-label"><span class="zh">联系电话 *</span><span class="en">Phone *</span><span class="de">Telefon *</span></label>
+        <label class="form-label"><span class="zh">联系电话 *</span><span class="en">Phone *</span><span class="de">Telefon *</span><span class="es">Teléfono *</span></label>
         <input class="form-input" type="tel" placeholder="+86 / +49 ..." />
       </div>
       <div class="form-group">
@@ -1164,7 +1232,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="form-label"><span class="zh">产品类型</span><span class="en">Product Type</span><span class="de">Produkttyp</span></label>
+      <label class="form-label"><span class="zh">产品类型</span><span class="en">Product Type</span><span class="de">Produkttyp</span><span class="es">Tipo de producto</span></label>
       <select class="form-select">
         <option value="" disabled selected style="background:#221A0E"></option>
         <option style="background:#221A0E">天地盖礼盒 / Rigid Lid & Base Box / Starre Deckel-Boden-Box</option>
@@ -1177,13 +1245,14 @@
       </select>
     </div>
     <div class="form-group">
-      <label class="form-label"><span class="zh">需求描述</span><span class="en">Requirements</span><span class="de">Anforderungen</span></label>
+      <label class="form-label"><span class="zh">需求描述</span><span class="en">Requirements</span><span class="de">Anforderungen</span><span class="es">Requisitos</span></label>
       <textarea class="form-textarea" id="msgArea"></textarea>
     </div>
     <button class="form-submit" id="submitBtn" onclick="handleSubmit(this)">
       <span class="zh">立即发送询盘 →</span>
       <span class="en">Send Enquiry →</span>
       <span class="de">Anfrage senden →</span>
+      <span class="es">Enviar consulta →</span>
     </button>
   </div>
 </section>
@@ -1194,18 +1263,20 @@
     <span class="zh">米彩包装（温州）有限公司 © 2025</span>
     <span class="en">MICAI Packaging (Wenzhou) Co., Ltd. © 2025</span>
     <span class="de">MICAI Packaging (Wenzhou) Co., Ltd. © 2025</span>
+    <span class="es">MICAI Packaging (Wenzhou) Co., Ltd. © 2025</span>
   </div>
   <div class="footer-links">
-    <a href="#home"><span class="zh">首页</span><span class="en">Home</span><span class="de">Start</span></a>
+    <a href="#home"><span class="zh">首页</span><span class="en">Home</span><span class="de">Start</span><span class="es">Inicio</span></a>
     <a href="#products"><span class="zh">产品</span><span class="en">Products</span><span class="de">Produkte</span></a>
     <a href="#process"><span class="zh">工艺</span><span class="en">Process</span><span class="de">Prozess</span></a>
     <a href="#why"><span class="zh">关于</span><span class="en">About</span><span class="de">Über uns</span></a>
-    <a href="#contact"><span class="zh">联系</span><span class="en">Contact</span><span class="de">Kontakt</span></a>
+    <a href="#contact"><span class="zh">联系</span><span class="en">Contact</span><span class="de">Kontakt</span><span class="es">Contacto</span></a>
   </div>
   <div class="footer-copy">
     <span class="zh">浙ICP备XXXXXXXX号</span>
     <span class="en">Zhejiang ICP No. XXXXXXXX</span>
     <span class="de">Zhejiang ICP Nr. XXXXXXXX</span>
+    <span class="es">Zhejiang ICP Núm. XXXXXXXX</span>
   </div>
 </footer>
 
@@ -1213,21 +1284,22 @@
   // ── LANGUAGE SWITCH ──
   function setLang(lang) {
     const body = document.body;
-    body.classList.remove('lang-zh', 'lang-en', 'lang-de');
+    body.classList.remove('lang-zh', 'lang-en', 'lang-de', 'lang-es');
     body.classList.add('lang-' + lang);
     document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
 
     document.getElementById('btnZH').classList.toggle('active', lang === 'zh');
     document.getElementById('btnEN').classList.toggle('active', lang === 'en');
     document.getElementById('btnDE').classList.toggle('active', lang === 'de');
+    document.getElementById('btnES').classList.toggle('active', lang === 'es');
 
-    // Update textarea placeholder
     const ta = document.getElementById('msgArea');
     if (ta) {
       const placeholders = {
         zh: '请描述您的包装需求，如：尺寸、数量、印刷工艺、使用场景等',
         en: 'Please describe your packaging needs: dimensions, quantity, printing finish, end-use, etc.',
-        de: 'Bitte beschreiben Sie Ihre Verpackungsanforderungen: Maße, Menge, Druck, Verwendungszweck usw.'
+        de: 'Bitte beschreiben Sie Ihre Verpackungsanforderungen: Maße, Menge, Druck, Verwendungszweck usw.',
+        es: 'Describa sus necesidades de embalaje: dimensiones, cantidad, acabados de impresión, uso final, etc.',
       };
       ta.placeholder = placeholders[lang] || placeholders.en;
     }
@@ -1253,12 +1325,12 @@
 
   // ── FORM SUBMIT ──
   function handleSubmit(btn) {
-    const lang = document.body.classList.contains('lang-de') ? 'de'
-               : document.body.classList.contains('lang-en') ? 'en' : 'zh';
+    const lang = ['de','en','es'].find(l => document.body.classList.contains('lang-'+l)) || 'zh';
     const msgs = {
       zh: '✓ 询盘已发送，我们将在24小时内联系您',
       en: '✓ Enquiry sent — we\'ll be in touch within 24 hours',
-      de: '✓ Anfrage gesendet — wir melden uns innerhalb von 24 Stunden'
+      de: '✓ Anfrage gesendet — wir melden uns innerhalb von 24 Stunden',
+      es: '✓ Consulta enviada — nos pondremos en contacto en 24 horas',
     };
     btn.innerHTML = msgs[lang];
     btn.style.background = '#4A7C59';
