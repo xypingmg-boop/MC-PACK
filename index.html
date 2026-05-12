@@ -1332,19 +1332,7 @@
       de: '✓ Anfrage gesendet — wir melden uns innerhalb von 24 Stunden',
       es: '✓ Consulta enviada — nos pondremos en contacto en 24 horas',
     };
-
-   fetch("50802mc-production.up.railway.app/inquiry", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    name,
-    email,
-    message
-  })
-});
-    btn.innerHTML = msgs[lang];
+    innerHTML = msgs[lang];
     btn.style.background = '#4A7C59';
     btn.style.color = '#FAF6F0';
     btn.disabled = true;
