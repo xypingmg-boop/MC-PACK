@@ -1333,27 +1333,17 @@
       es: '✓ Consulta enviada — nos pondremos en contacto en 24 horas',
     };
 
-    try {
-    // 
-    await fetch("https://50802mc-production.up.railway.app/contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        // 这里你要放表单数据，比如：
-        // name, email, message, product
-      })
-    });
-
-    //
-    btn.innerHTML = msgs[lang];
-
-  } catch (err) {
-    btn.innerHTML = "❌ 发送失败，请重试";
-    console.error(err);
-  }
-}
+   fetch("https://xxx.up.railway.app/inquiry", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name,
+    email,
+    message
+  })
+});
     btn.innerHTML = msgs[lang];
     btn.style.background = '#4A7C59';
     btn.style.color = '#FAF6F0';
