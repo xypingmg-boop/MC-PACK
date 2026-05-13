@@ -1207,31 +1207,86 @@
   </div>
 
   <div class="contact-right">
-    <div class="form-title zh">发送询盘</div>
-    <div class="form-title en">Send an Enquiry</div>
-    <div class="form-title de">Anfrage senden</div>
-    <div class="form-title es">Enviar consulta</div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label"><span class="zh">您的姓名 *</span><span class="en">Full Name *</span><span class="de">Ihr Name *</span><span class="es">Su nombre *</span></label>
-        <input class="form-input" type="text" />
-      </div>
-      <div class="form-group">
-        <label class="form-label"><span class="zh">公司名称</span><span class="en">Company</span><span class="de">Unternehmen</span><span class="es">Empresa</span></label>
-        <input class="form-input" type="text" />
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label"><span class="zh">联系电话 *</span><span class="en">Phone *</span><span class="de">Telefon *</span><span class="es">Teléfono *</span></label>
-        <input class="form-input" type="tel" placeholder="+86 / +49 ..." />
-      </div>
-      <div class="form-group">
-        <label class="form-label">Email</label>
-        <input class="form-input" type="email" placeholder="your@email.com" />
-      </div>
-    </div>
+
+  <div class="form-title zh">发送询盘</div>
+  <div class="form-title en">Send an Enquiry</div>
+  <div class="form-title de">Anfrage senden</div>
+  <div class="form-title es">Enviar consulta</div>
+
+  <div class="form-row">
+
+    <!-- 姓名 -->
     <div class="form-group">
+      <label class="form-label">
+        <span class="zh">您的姓名 *</span>
+        <span class="en">Full Name *</span>
+        <span class="de">Ihr Name *</span>
+        <span class="es">Su nombre *</span>
+      </label>
+
+      <input
+        class="form-input"
+        type="text"
+        id="nameInput"
+        name="name"
+      />
+    </div>
+
+    <!-- 公司 -->
+    <div class="form-group">
+      <label class="form-label">
+        <span class="zh">公司名称</span>
+        <span class="en">Company</span>
+        <span class="de">Unternehmen</span>
+        <span class="es">Empresa</span>
+      </label>
+
+      <input
+        class="form-input"
+        type="text"
+        id="companyInput"
+        name="company"
+      />
+    </div>
+
+  </div>
+
+  <div class="form-row">
+
+    <!-- 电话 -->
+    <div class="form-group">
+      <label class="form-label">
+        <span class="zh">联系电话 *</span>
+        <span class="en">Phone *</span>
+        <span class="de">Telefon *</span>
+        <span class="es">Teléfono *</span>
+      </label>
+
+      <input
+        class="form-input"
+        type="tel"
+        id="phoneInput"
+        name="phone"
+        placeholder="+86 / +49 ..."
+      />
+    </div>
+
+    <!-- 邮箱 -->
+    <div class="form-group">
+      <label class="form-label">Email</label>
+
+      <input
+        class="form-input"
+        type="email"
+        id="emailInput"
+        name="email"
+        placeholder="your@email.com"
+      />
+    </div>
+
+  </div>
+
+</div>
       <label class="form-label"><span class="zh">产品类型</span><span class="en">Product Type</span><span class="de">Produkttyp</span><span class="es">Tipo de producto</span></label>
       <select class="form-select">
         <option value="" disabled selected style="background:#221A0E"></option>
