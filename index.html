@@ -1352,21 +1352,14 @@
 async function handleSubmit(btn) {
 
   // 获取输入框内容
-  const data = {
-
-    company: document.getElementById('companyInput')?.value || '',
-
-    name: document.getElementById('nameInput')?.value || '',
-
-    email: document.getElementById('emailInput')?.value || '',
-
-    phone: document.getElementById('phoneInput')?.value || '',
-
-    quantity: document.getElementById('qtyInput')?.value || '',
-
-    message: document.getElementById('msgArea')?.value || ''
-
-  };
+ const data = {
+  company: document.querySelector('[name=company]')?.value || '',
+  name: document.querySelector('[name=name]')?.value || '',
+  email: document.querySelector('[name=email]')?.value || '',
+  phone: document.querySelector('[name=phone]')?.value || '',
+  quantity: document.querySelector('[name=quantity]')?.value || '',
+  message: document.querySelector('[name=message]')?.value || ''
+};
 
   console.log(data);
 
