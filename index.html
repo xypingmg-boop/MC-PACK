@@ -1347,5 +1347,79 @@
     });
   });
 </script>
+  <script>
+
+async function handleSubmit(btn) {
+
+  // 获取输入框内容
+  const data = {
+
+    company: document.getElementById('companyInput')?.value || '',
+
+    name: document.getElementById('nameInput')?.value || '',
+
+    email: document.getElementById('emailInput')?.value || '',
+
+    phone: document.getElementById('phoneInput')?.value || '',
+
+    quantity: document.getElementById('qtyInput')?.value || '',
+
+    message: document.getElementById('msgArea')?.value || ''
+
+  };
+
+  console.log(data);
+
+  // 按钮进入 loading
+  btn.disabled = true;
+  btn.innerText = 'Sending...';
+
+  try {
+
+    // 发送到 Railway
+    const response = await fetch(
+      'https://508mc-production.up.railway.app/api/contact',
+      {
+
+        method: 'POST',
+
+        headers: {
+          'Content-Type': 'application/json'
+        },
+
+        body: JSON.stringify(data)
+
+      }
+    );
+
+    const result = await response.json();
+
+    console.log(result);
+
+    if(result.success){
+
+      alert('Inquiry sent successfully!');
+
+    } else {
+
+      alert('Send failed');
+
+    }
+
+  } catch(error) {
+
+    console.error(error);
+
+    alert('Network error');
+
+  }
+
+  // 恢复按钮
+  btn.disabled = false;
+  btn.innerText = 'Send Enquiry →';
+
+}
+
+</script>
 </body>
 </html>
