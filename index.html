@@ -1414,12 +1414,13 @@ async function handleSubmit(btn) {
 
   // 获取输入框内容
  const data = {
-  company: document.querySelector('[name=company]')?.value || '',
   name: document.querySelector('[name=name]')?.value || '',
-  email: document.querySelector('[name=email]')?.value || '',
+  company: document.querySelector('[name=company]')?.value || '',
   phone: document.querySelector('[name=phone]')?.value || '',
-  quantity: document.querySelector('[name=quantity]')?.value || '',
-  message: document.querySelector('[name=message]')?.value || ''
+  email: document.querySelector('[name=email]')?.value || '',
+  productType: document.querySelector('[name=quantity]')?.value || '',
+  message: document.querySelector('[name=message]')?.value || '',
+  lang: ['de','en','es'].find(l => document.body.classList.contains('lang-'+l)) || 'zh',
 };
 
   console.log(data);
@@ -1432,7 +1433,7 @@ async function handleSubmit(btn) {
 
     // 发送到 Railway
     const response = await fetch(
-      'https://508mc-production.up.railway.app/api/contact',
+      'https://508mc-production.up.railway.app/api/inquiries',
       {
 
         method: 'POST',
