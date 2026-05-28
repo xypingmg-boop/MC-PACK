@@ -1173,7 +1173,7 @@
         <div class="contact-icon">📍</div>
         <div>
           <div class="contact-label"><span class="zh">工厂地址</span><span class="en">Factory Address</span><span class="de">Werksadresse</span><span class="es">Dirección de fábrica</span></div>
-          <div class="contact-val zh">浙江省温州市龙港市物流大道1588号</div>
+          <div class="contact-val zh" id="contact-address-zh">浙江省温州市龙港市物流大道1588号</div>
           <div class="contact-val en">No. 1588, Logistics Avenue, Longgang, Wenzhou, Zhejiang, China</div>
           <div class="contact-val de">Nr. 1588, Logistics Avenue, Longgang, Wenzhou, Zhejiang, China</div>
           <div class="contact-val es">Avda. Logística 1588, Longgang, Wenzhou, Zhejiang, China</div>
@@ -1183,21 +1183,21 @@
         <div class="contact-icon">📞</div>
         <div>
           <div class="contact-label"><span class="zh">联系电话</span><span class="en">Phone</span><span class="de">Telefon</span><span class="es">Teléfono</span></div>
-          <div class="contact-val">+86 0577 - XXXX XXXX</div>
+          <div class="contact-val" id="contact-phone">+86 0577 - XXXX XXXX</div>
         </div>
       </div>
       <div class="contact-row">
         <div class="contact-icon">✉️</div>
         <div>
           <div class="contact-label"><span class="zh">电子邮箱</span><span class="en">Email</span><span class="de">E-Mail</span><span class="es">Correo electrónico</span></div>
-          <div class="contact-val">sales@micai-packaging.com</div>
+          <div class="contact-val" id="contact-email">sales@micai-packaging.com</div>
         </div>
       </div>
       <div class="contact-row">
         <div class="contact-icon">💬</div>
         <div>
           <div class="contact-label">WeChat / WhatsApp</div>
-          <div class="contact-val zh">扫码添加业务顾问</div>
+          <div class="contact-val zh" id="contact-wechat-zh">扫码添加业务顾问</div>
           <div class="contact-val en">Scan to add our sales consultant</div>
           <div class="contact-val de">QR-Code scannen für unseren Berater</div>
           <div class="contact-val es">Escanee el código QR para contactar a nuestro asesor</div>
@@ -1475,6 +1475,29 @@ async function handleSubmit(btn) {
 
 }
 
+</script>
+<script>
+fetch("https://508mc-production.up.railway.app/api/settings")
+  .then(r => r.json())
+  .then(data => {
+    if (data.contact_address) {
+      const el = document.getElementById("contact-address-zh");
+      if (el) el.textContent = data.contact_address;
+    }
+    if (data.contact_phone) {
+      const el = document.getElementById("contact-phone");
+      if (el) el.textContent = data.contact_phone;
+    }
+    if (data.contact_email) {
+      const el = document.getElementById("contact-email");
+      if (el) el.textContent = data.contact_email;
+    }
+    if (data.contact_wechat) {
+      const el = document.getElementById("contact-wechat-zh");
+      if (el) el.textContent = data.contact_wechat;
+    }
+  })
+  .catch(() => {});
 </script>
 </body>
 </html>
