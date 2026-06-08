@@ -1492,121 +1492,162 @@ fetch("https://508mc-production.up.railway.app/api/settings")
   .catch(() => {});
 </script>
 
-<!-- PRODUCT MODAL -->
-<div id="productModal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(13,10,5,0.85);backdrop-filter:blur(8px);overflow-y:auto;padding:40px 20px;" onclick="if(event.target===this)closeModal()">
-  <div id="modalInner" style="max-width:960px;margin:0 auto;position:relative;background:#1A1308;border:1px solid rgba(201,169,110,0.25);display:grid;grid-template-columns:1fr 1fr;min-height:560px;opacity:0;transform:translateY(32px);transition:opacity 0.4s ease,transform 0.4s ease;">
-    <button onclick="closeModal()" style="position:absolute;top:20px;right:20px;z-index:10;width:36px;height:36px;border:1px solid rgba(201,169,110,0.3);background:rgba(201,169,110,0.08);color:rgba(250,246,240,0.6);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;" onmouseover="this.style.background='rgba(201,169,110,0.2)';this.style.color='#C9A96E'" onmouseout="this.style.background='rgba(201,169,110,0.08)';this.style.color='rgba(250,246,240,0.6)'">✕</button>
-    <div style="position:relative;background:#130F08;overflow:hidden;">
-      <div id="modalMainImg" style="width:100%;height:400px;display:flex;align-items:center;justify-content:center;font-size:80px;background:#130F08;border-bottom:1px solid rgba(201,169,110,0.1);"></div>
-      <div id="modalThumbs" style="display:flex;gap:8px;padding:12px 16px;overflow-x:auto;scrollbar-width:thin;"></div>
-    </div>
-    <div style="padding:40px 40px 32px;display:flex;flex-direction:column;overflow-y:auto;max-height:600px;">
-      <div id="modalEyebrow" style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.15em;color:#C9A96E;text-transform:uppercase;margin-bottom:14px;"></div>
-      <h2 id="modalName" style="font-family:'Noto Serif SC',serif;font-size:26px;font-weight:700;color:#FAF6F0;line-height:1.3;margin-bottom:16px;"></h2>
-      <p id="modalDesc" style="font-family:'Jost',sans-serif;font-size:13px;color:rgba(250,246,240,0.55);line-height:1.8;font-weight:300;margin-bottom:24px;"></p>
-      <div id="modalBullets" style="margin-bottom:28px;display:flex;flex-direction:column;gap:8px;"></div>
-      <div id="modalDetail" style="font-size:13px;color:rgba(250,246,240,0.5);line-height:1.8;font-family:'Jost',sans-serif;font-weight:300;border-top:1px solid rgba(201,169,110,0.15);padding-top:20px;flex:1;"></div>
-      <a href="#contact" onclick="closeModal()" style="display:block;margin-top:28px;padding:16px;background:#C9A96E;color:#1A1308;text-align:center;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:0.15em;font-weight:700;text-decoration:none;text-transform:uppercase;transition:all 0.3s;cursor:pointer;" onmouseover="this.style.background='#D4B87E';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#C9A96E';this.style.transform='translateY(0)'"><span class="zh">获取定制报价 →</span><span class="en">Request a Custom Quote →</span><span class="de">Angebot anfordern →</span><span class="es">Solicitar cotización →</span></a>
-    </div>
-  </div>
-</div>
+
+
+
+<style>
+#productModal *{box-sizing:border-box;}
+#productModal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);overflow-y:auto;padding:0;}
+#modalBox{max-width:1100px;margin:40px auto;background:#fff;min-height:500px;position:relative;border-radius:4px;overflow:hidden;opacity:0;transform:translateY(24px);transition:opacity 0.35s,transform 0.35s;}
+#modalClose{position:absolute;top:14px;right:16px;z-index:10;background:none;border:none;font-size:24px;cursor:pointer;color:#555;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s;}
+#modalClose:hover{background:#f0f0f0;}
+#modalLayout{display:grid;grid-template-columns:80px 420px 1fr;gap:0;min-height:500px;}
+#modalThumbnails{padding:16px 8px;display:flex;flex-direction:column;gap:8px;border-right:1px solid #e8e8e8;}
+.m-thumb{width:60px;height:60px;border:2px solid #e8e8e8;cursor:pointer;overflow:hidden;border-radius:2px;flex-shrink:0;}
+.m-thumb:hover,.m-thumb.active{border-color:#e77600;}
+.m-thumb img{width:100%;height:100%;object-fit:cover;}
+#modalImgArea{padding:24px;display:flex;align-items:flex-start;justify-content:center;border-right:1px solid #e8e8e8;background:#fff;}
+#modalMainImg{width:100%;max-width:380px;aspect-ratio:1;object-fit:contain;border:1px solid #e8e8e8;}
+#modalMainImgEmoji{width:100%;max-width:380px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:120px;background:#f9f9f9;border:1px solid #e8e8e8;}
+#modalInfo{padding:24px 28px;overflow-y:auto;max-height:80vh;}
+#modalBadge{display:inline-block;background:#c45500;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:2px;margin-bottom:10px;letter-spacing:0.05em;font-family:Arial,sans-serif;}
+#modalTitle{font-size:20px;font-weight:400;line-height:1.4;color:#0F1111;margin-bottom:8px;font-family:Arial,sans-serif;}
+#modalBrand{font-size:13px;color:#007185;margin-bottom:10px;font-family:Arial,sans-serif;}
+#modalPriceArea{margin-bottom:14px;}
+#modalPriceLabel{font-size:12px;color:#565959;font-family:Arial,sans-serif;}
+#modalPrice{font-size:28px;color:#B12704;font-family:Arial,sans-serif;font-weight:400;}
+#modalOrigPrice{font-size:14px;color:#565959;text-decoration:line-through;margin-left:8px;font-family:Arial,sans-serif;}
+#modalDiscount{font-size:14px;color:#B12704;margin-left:6px;font-family:Arial,sans-serif;}
+#modalAboutTitle{font-size:14px;font-weight:700;color:#0F1111;margin-bottom:8px;font-family:Arial,sans-serif;}
+#modalBulletList{padding-left:0;margin:0 0 12px 0;list-style:none;}
+#modalBulletList li{font-size:13px;color:#0F1111;line-height:1.6;padding:3px 0 3px 16px;position:relative;font-family:Arial,sans-serif;}
+#modalBulletList li::before{content:"▪";position:absolute;left:0;color:#e77600;}
+#modalDesc{font-size:13px;color:#333;line-height:1.7;margin-bottom:16px;font-family:Arial,sans-serif;}
+#modalSpecsTitle{font-size:14px;font-weight:700;color:#0F1111;margin-bottom:8px;font-family:Arial,sans-serif;}
+.m-spec-row{display:grid;grid-template-columns:140px 1fr;font-size:13px;padding:6px 0;border-bottom:1px solid #f0f0f0;font-family:Arial,sans-serif;}
+.m-spec-key{color:#565959;}.m-spec-val{color:#0F1111;}
+#modalCTA{display:block;width:100%;padding:10px;background:linear-gradient(to bottom,#f7dfa5,#f0c14b);border:1px solid #a88734;border-radius:3px;font-size:14px;font-weight:700;color:#111;cursor:pointer;text-align:center;text-decoration:none;font-family:Arial,sans-serif;margin-bottom:8px;}
+#modalCTA:hover{filter:brightness(0.95);}
+#modalCTA2{display:block;width:100%;padding:10px;background:linear-gradient(to bottom,#f5f5f5,#e8e8e8);border:1px solid #adb1b8;border-radius:3px;font-size:14px;color:#111;cursor:pointer;text-align:center;text-decoration:none;font-family:Arial,sans-serif;}
+#modalCTA2:hover{filter:brightness(0.95);}
+@media(max-width:780px){#modalLayout{grid-template-columns:1fr;}#modalThumbnails{flex-direction:row;border-right:none;border-bottom:1px solid #e8e8e8;padding:10px 16px;}#modalImgArea{border-right:none;border-bottom:1px solid #e8e8e8;}#modalInfo{max-height:none;}#modalBox{margin:0;border-radius:0;}}
+</style>
+<div id="productModal" onclick="if(event.target===this)closeModal()">
+<div id="modalBox">
+<button id="modalClose" onclick="closeModal()">&#x2715;</button>
+<div id="modalLayout">
+<div id="modalThumbnails"></div>
+<div id="modalImgArea"><img id="modalMainImg" src="" alt="" style="display:none;"/><div id="modalMainImgEmoji" style="display:none;"></div></div>
+<div id="modalInfo">
+<div id="modalBadge"></div>
+<div id="modalTitle"></div>
+<div id="modalBrand"></div>
+<hr style="border:none;border-top:1px solid #e8e8e8;margin:12px 0;"/>
+<div id="modalPriceArea" style="display:none;"><div id="modalPriceLabel"></div><span id="modalPrice"></span><span id="modalOrigPrice" style="display:none;"></span><span id="modalDiscount" style="display:none;"></span></div>
+<div id="modalAboutTitle"></div>
+<ul id="modalBulletList"></ul>
+<p id="modalDesc"></p>
+<div id="modalSpecs" style="display:none;"><div id="modalSpecsTitle"></div><div id="modalSpecsBody"></div></div>
+<hr style="border:none;border-top:1px solid #e8e8e8;margin:16px 0;"/>
+<a id="modalCTA" href="#contact" onclick="closeModal()"></a>
+<a id="modalCTA2" href="#contact" onclick="closeModal()"></a>
+</div></div></div></div>
 <script>
+(function(){
 var allProducts=[];
 var API='https://508mc-production.up.railway.app';
-async function loadProducts(){
-  try{
-    var res=await fetch(API+'/api/products?lang=zh');
-    var data=await res.json();
-    allProducts=data.filter(function(p){return p.visible!==false;}).sort(function(a,b){return (a.sort||99)-(b.sort||99);});
-    bindCards();
-  }catch(e){console.warn('API error',e);}
+function getLang(){return['de','en','es'].find(function(l){return document.body.classList.contains('lang-'+l);})||'zh';}
+function getTrans(p,field){var lang=getLang();var t=(p.translations||[]).find(function(t){return t.lang===lang;})||(p.translations||[]).find(function(t){return t.lang==='zh';})||{};return t[field]||'';}
+async function loadProducts(){try{var res=await fetch(API+'/api/products');var data=await res.json();allProducts=data.filter(function(p){return p.visible!==false;}).sort(function(a,b){return(a.sort||99)-(b.sort||99);});bindCards();}catch(e){console.warn('api err',e);}}
+function bindCards(){document.querySelectorAll('.product-card').forEach(function(card,idx){var p=allProducts[idx];if(!p)return;card.style.cursor='pointer';card.addEventListener('click',function(){openModal(p);});});}
+function openModal(p){
+var lang=getLang();
+var trans=(p.translations||[]).find(function(t){return t.lang===lang;})||(p.translations||[]).find(function(t){return t.lang==='zh';})||{};
+var badge=document.getElementById('modalBadge');badge.textContent={zh:'米彩包装',en:'MICAI Packaging',de:'MICAI Verpackung',es:'MICAI Packaging'}[lang]||'MICAI';badge.style.display='inline-block';
+document.getElementById('modalTitle').textContent=trans.name||p.slug||'';
+document.getElementById('modalBrand').textContent={zh:'品牌：米彩包装（温州）有限公司',en:'Brand: MICAI Packaging (Wenzhou) Co., Ltd.',de:'Marke: MICAI Packaging (Wenzhou)',es:'Marca: MICAI Packaging (Wenzhou)'}[lang]||'';
+var pa=document.getElementById('modalPriceArea');
+if(p.price){pa.style.display='block';document.getElementById('modalPriceLabel').textContent={zh:'定制报价起',en:'Custom Quote from',de:'Angebot ab',es:'Cotización desde'}[lang]||'';document.getElementById('modalPrice').textContent='¥'+p.price;var oe=document.getElementById('modalOrigPrice'),de2=document.getElementById('modalDiscount');if(p.originalPrice&&parseFloat(p.originalPrice)>parseFloat(p.price)){oe.textContent='¥'+p.originalPrice;oe.style.display='inline';de2.textContent='(-'+Math.round((1-parseFloat(p.price)/parseFloat(p.originalPrice))*100)+'%)';de2.style.display='inline';}else{oe.style.display='none';de2.style.display='none';}}else{pa.style.display='none';}
+document.getElementById('modalAboutTitle').textContent={zh:'关于本产品',en:'About this item',de:'Über dieses Produkt',es:'Sobre este producto'}[lang]||'';
+var ul=document.getElementById('modalBulletList');ul.innerHTML='';(trans.bulletPoints||[]).filter(Boolean).forEach(function(bp){var li=document.createElement('li');li.textContent=bp;ul.appendChild(li);});
+document.getElementById('modalDesc').textContent=trans.description||'';
+var sp=document.getElementById('modalSpecs');
+if(p.variants&&p.variants.filter(function(v){return v.visible!==false;}).length){sp.style.display='block';document.getElementById('modalSpecsTitle').textContent={zh:'可选规格',en:'Available Options',de:'Verfügbare Optionen',es:'Opciones disponibles'}[lang]||'';var html='';p.variants.filter(function(v){return v.visible!==false;}).forEach(function(v){html+='<div class="m-spec-row"><span class="m-spec-key">'+v.label+'</span><span class="m-spec-val">'+(v.price?'¥'+v.price:'')+(v.sku?' &nbsp;·&nbsp; '+v.sku:'')+'</span></div>';});document.getElementById('modalSpecsBody').innerHTML=html;}
+else if(trans.detail){sp.style.display='block';document.getElementById('modalSpecsTitle').textContent={zh:'产品详情',en:'Product Details',de:'Produktdetails',es:'Detalles del producto'}[lang]||'';document.getElementById('modalSpecsBody').innerHTML='<div style="font-size:13px;color:#333;line-height:1.8;font-family:Arial,sans-serif;">'+trans.detail+'</div>';}
+else{sp.style.display='none';}
+document.getElementById('modalCTA').textContent={zh:'立即获取定制报价 →',en:'Request a Custom Quote →',de:'Angebot anfordern →',es:'Solicitar cotización →'}[lang]||'';
+document.getElementById('modalCTA2').textContent={zh:'联系我们了解更多',en:'Contact Us to Learn More',de:'Kontaktieren Sie uns',es:'Contáctenos'}[lang]||'';
+var imgs=(p.images&&p.images.filter(Boolean).length)?p.images.filter(Boolean):(p.imageUrl?[p.imageUrl]:[]);
+var mi=document.getElementById('modalMainImg'),me=document.getElementById('modalMainImgEmoji'),th=document.getElementById('modalThumbnails');
+th.innerHTML='';
+if(imgs.length){mi.src=imgs[0];mi.style.display='block';me.style.display='none';imgs.forEach(function(url,i){var d=document.createElement('div');d.className='m-thumb'+(i===0?' active':'');d.innerHTML='<img src="'+url+'" />';d.addEventListener('click',function(){mi.src=url;th.querySelectorAll('.m-thumb').forEach(function(t){t.classList.remove('active');});d.classList.add('active');});th.appendChild(d);});}
+else{mi.style.display='none';me.style.display='flex';me.textContent=p.icon||'\uD83D\uDCE6';}
+var modal=document.getElementById('productModal'),box=document.getElementById('modalBox');
+modal.style.display='block';document.body.style.overflow='hidden';
+requestAnimationFrame(function(){requestAnimationFrame(function(){box.style.opacity='1';box.style.transform='translateY(0)';});});
 }
-function bindCards(){
-  var cards=document.querySelectorAll('.product-card');
-  cards.forEach(function(card,idx){
-    var product=allProducts[idx];
-    if(!product)return;
-    card.style.cursor='pointer';
-    card.addEventListener('click',function(){openModal(product);});
-  });
-}
-function getLang(){return ['de','en','es'].find(function(l){return document.body.classList.contains('lang-'+l);})||'zh';}
-function getTrans(product,field){
-  var lang=getLang();
-  var t=product.translations&&(product.translations.find(function(t){return t.lang===lang;})||product.translations.find(function(t){return t.lang==='zh';}));
-  return (t&&t[field])||'';
-}
-function openModal(product){
-  var lang=getLang();
-  var eyebrows={zh:'产品详情',en:'Product Details',de:'Produktdetails',es:'Detalles del Producto'};
-  document.getElementById('modalEyebrow').textContent=eyebrows[lang]||'Product Details';
-  document.getElementById('modalName').textContent=getTrans(product,'name')||product.slug||'';
-  document.getElementById('modalDesc').textContent=getTrans(product,'description')||'';
-  var bulletsEl=document.getElementById('modalBullets');
-  bulletsEl.innerHTML='';
-  var langTrans=product.translations&&(product.translations.find(function(t){return t.lang===lang;})||product.translations.find(function(t){return t.lang==='zh';}));
-  var bullets=(langTrans&&langTrans.bulletPoints)||[];
-  bullets.filter(Boolean).forEach(function(bp){
-    var row=document.createElement('div');
-    row.style.cssText='display:flex;align-items:flex-start;gap:10px;';
-    row.innerHTML='<div style="width:6px;height:6px;border-radius:50%;background:#C9A96E;flex-shrink:0;margin-top:6px;"></div><span style="font-family:Jost,sans-serif;font-size:13px;color:rgba(250,246,240,0.7);line-height:1.7;font-weight:300;">'+bp+'</span>';
-    bulletsEl.appendChild(row);
-  });
-  var detail=(langTrans&&langTrans.detail)||'';
-  var detailEl=document.getElementById('modalDetail');
-  detailEl.innerHTML=detail;
-  detailEl.style.display=detail?'block':'none';
-  var images=[];
-  if(product.images&&product.images.length)images=product.images.filter(Boolean);
-  else if(product.imageUrl)images=[product.imageUrl];
-  var mainImgEl=document.getElementById('modalMainImg');
-  var thumbsEl=document.getElementById('modalThumbs');
-  if(images.length>0){
-    mainImgEl.innerHTML='<img src="'+images[0]+'" style="width:100%;height:100%;object-fit:cover;" />';
-  }else{
-    mainImgEl.innerHTML='<span style="font-size:80px;">'+(product.icon||'📦')+'</span>';
-  }
-  thumbsEl.innerHTML='';
-  if(images.length>1){
-    images.forEach(function(url,i){
-      var thumb=document.createElement('div');
-      thumb.style.cssText='width:64px;height:64px;flex-shrink:0;cursor:pointer;overflow:hidden;border:1px solid '+(i===0?'#C9A96E':'rgba(201,169,110,0.2)')+';transition:border-color 0.2s;';
-      thumb.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:cover;" />';
-      thumb.addEventListener('click',function(){
-        mainImgEl.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:cover;" />';
-        thumbsEl.querySelectorAll('div').forEach(function(t){t.style.borderColor='rgba(201,169,110,0.2)';});
-        thumb.style.borderColor='#C9A96E';
-      });
-      thumbsEl.appendChild(thumb);
-    });
-  }
-  var modal=document.getElementById('productModal');
-  var inner=document.getElementById('modalInner');
-  modal.style.display='block';
-  document.body.style.overflow='hidden';
-  requestAnimationFrame(function(){requestAnimationFrame(function(){
-    inner.style.opacity='1';
-    inner.style.transform='translateY(0)';
-  });});
-}
-function closeModal(){
-  var inner=document.getElementById('modalInner');
-  inner.style.opacity='0';
-  inner.style.transform='translateY(32px)';
-  setTimeout(function(){
-    document.getElementById('productModal').style.display='none';
-    document.body.style.overflow='';
-  },350);
-}
+window.closeModal=function(){var box=document.getElementById('modalBox');box.style.opacity='0';box.style.transform='translateY(24px)';setTimeout(function(){document.getElementById('productModal').style.display='none';document.body.style.overflow='';},320);};
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
-function fixModalLayout(){
-  var inner=document.getElementById('modalInner');
-  if(inner)inner.style.gridTemplateColumns=window.innerWidth<700?'1fr':'1fr 1fr';
-}
-window.addEventListener('resize',fixModalLayout);
-fixModalLayout();
 loadProducts();
+})();
 </script>
+
+
+<style>
+#productModal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.7);backdrop-filter:blur(6px);overflow-y:auto;padding:0;}
+#productModal *{box-sizing:border-box;}
+#modalBox{max-width:1100px;margin:40px auto;background:#fff;min-height:500px;position:relative;border-radius:4px;overflow:hidden;opacity:0;transform:translateY(24px);transition:opacity 0.35s,transform 0.35s;}
+#modalClose{position:absolute;top:14px;right:16px;z-index:10;background:none;border:none;font-size:24px;cursor:pointer;color:#555;width:36px;height:36px;display:flex;align-items:center;justify-content:center;border-radius:50%;}
+#modalClose:hover{background:#f0f0f0;}
+#modalLayout{display:grid;grid-template-columns:80px 420px 1fr;min-height:500px;}
+#modalThumbnails{padding:16px 8px;display:flex;flex-direction:column;gap:8px;border-right:1px solid #e8e8e8;}
+.m-thumb{width:60px;height:60px;border:2px solid #e8e8e8;cursor:pointer;overflow:hidden;border-radius:2px;flex-shrink:0;}
+.m-thumb:hover,.m-thumb.active{border-color:#e77600;}
+.m-thumb img{width:100%;height:100%;object-fit:cover;}
+#modalImgArea{padding:24px;display:flex;align-items:flex-start;justify-content:center;border-right:1px solid #e8e8e8;}
+#modalMainImg{width:100%;max-width:380px;aspect-ratio:1/1;object-fit:contain;border:1px solid #e8e8e8;}
+#modalMainImgEmoji{width:100%;max-width:380px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-size:120px;background:#f9f9f9;border:1px solid #e8e8e8;}
+#modalInfo{padding:24px 28px;overflow-y:auto;max-height:80vh;}
+#modalBadge{display:none;background:#c45500;color:#fff;font-size:11px;font-weight:700;padding:3px 8px;border-radius:2px;margin-bottom:10px;letter-spacing:0.05em;font-family:Arial,sans-serif;}
+#modalTitle{font-size:20px;font-weight:400;line-height:1.4;color:#0F1111;margin-bottom:8px;font-family:Arial,sans-serif;}
+#modalBrand{font-size:13px;color:#007185;margin-bottom:10px;font-family:Arial,sans-serif;}
+#modalPriceLabel{font-size:12px;color:#565959;font-family:Arial,sans-serif;}
+#modalPrice{font-size:28px;color:#B12704;font-family:Arial,sans-serif;}
+#modalOrigPrice{font-size:14px;color:#565959;text-decoration:line-through;margin-left:8px;}
+#modalDiscount{font-size:14px;color:#B12704;margin-left:6px;}
+#modalAboutTitle{font-size:14px;font-weight:700;color:#0F1111;margin-bottom:8px;font-family:Arial,sans-serif;}
+#modalBulletList{padding-left:0;margin:0 0 12px 0;list-style:none;}
+#modalBulletList li{font-size:13px;color:#0F1111;line-height:1.6;padding:3px 0 3px 16px;position:relative;font-family:Arial,sans-serif;}
+#modalBulletList li::before{content:"x25AA";position:absolute;left:0;color:#e77600;}
+#modalDesc{font-size:13px;color:#333;line-height:1.7;margin-bottom:16px;font-family:Arial,sans-serif;}
+#modalSpecsTitle{font-size:14px;font-weight:700;color:#0F1111;margin-bottom:8px;font-family:Arial,sans-serif;}
+.m-spec-row{display:grid;grid-template-columns:140px 1fr;font-size:13px;padding:6px 0;border-bottom:1px solid #f0f0f0;}
+.m-spec-key{color:#565959;font-family:Arial,sans-serif;}.m-spec-val{color:#0F1111;font-family:Arial,sans-serif;}
+#modalCTA{display:block;width:100%;padding:10px;background:linear-gradient(to bottom,#f7dfa5,#f0c14b);border:1px solid #a88734;border-radius:3px;font-size:14px;font-weight:700;color:#111;cursor:pointer;text-align:center;text-decoration:none;font-family:Arial,sans-serif;margin-bottom:8px;}
+#modalCTA2{display:block;width:100%;padding:10px;background:linear-gradient(to bottom,#f5f5f5,#e8e8e8);border:1px solid #adb1b8;border-radius:3px;font-size:14px;color:#111;text-align:center;text-decoration:none;font-family:Arial,sans-serif;}
+@media(max-width:780px){#modalLayout{grid-template-columns:1fr;}#modalThumbnails{flex-direction:row;border-right:none;border-bottom:1px solid #e8e8e8;padding:10px 16px;}#modalImgArea{border-right:none;border-bottom:1px solid #e8e8e8;}#modalInfo{max-height:none;}#modalBox{margin:0;border-radius:0;}}
+</style>
+<div id="productModal" onclick="if(event.target===this)closeModal()">
+<div id="modalBox">
+<button id="modalClose" onclick="closeModal()">&#x2715;</button>
+<div id="modalLayout">
+<div id="modalThumbnails"></div>
+<div id="modalImgArea"><img id="modalMainImg" src="" alt="" style="display:none"/><div id="modalMainImgEmoji" style="display:none"></div></div>
+<div id="modalInfo">
+<div id="modalBadge"></div>
+<div id="modalTitle"></div>
+<div id="modalBrand"></div>
+<hr style="border:none;border-top:1px solid #e8e8e8;margin:12px 0"/>
+<div id="modalPriceArea" style="display:none"><div id="modalPriceLabel"></div><span id="modalPrice"></span><span id="modalOrigPrice" style="display:none"></span><span id="modalDiscount" style="display:none"></span></div>
+<div id="modalAboutTitle"></div>
+<ul id="modalBulletList"></ul>
+<p id="modalDesc"></p>
+<div id="modalSpecs" style="display:none"><div id="modalSpecsTitle"></div><div id="modalSpecsBody"></div></div>
+<hr style="border:none;border-top:1px solid #e8e8e8;margin:16px 0"/>
+<a id="modalCTA" href="#contact" onclick="closeModal()"></a>
+<a id="modalCTA2" href="#contact" onclick="closeModal()"></a>
+</div></div></div></div>
+<script src="product-modal.js"></script>
 
 </body>
 </html>
