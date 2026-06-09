@@ -179,13 +179,15 @@ window.openPdp=function(p){
     es:{cat:'Categorias',feat:'Por que MICAI',feats:[['🏭','Fabrica propia'],['📦','MOQ 300 uds'],['🌿','Certificado FSC'],['✈️','Exportacion global'],['⏱️','Muestra en 7 dias']],sideP:'Necesita asesoria?',sideA:'Consulta gratuita',badge:'MICAI Packaging',brand:'Marca: MICAI Packaging (Wenzhou)',rating:'4.9 · 500+ clientes',plabel:'Cotizacion desde',pnote:'Venta directa · MOQ bajo',about:'Sobre este producto',specs:'Opciones',detail:'Detalles',ship:'Asesor en 24h · Muestra 7 dias',cta1:'Solicitar cotizacion',cta2:'Contactenos'}
   }[lang]||{};
 
-  // 侧边栏：动态显示所有后台产品
+  // 侧边栏：前6个用固定名称，第7个起用后台名称
+  var FIXED_CATS={zh:['天地盖礼盒','磁吸翻盖礼盒','抽屉式礼盒','异形创意礼盒','茶叶/食品礼盒','节日主题礼盒'],en:['Rigid Lid & Base Box','Magnetic Closure Box','Drawer Slide Box','Custom Shape Box','Tea & Food Gift Box','Seasonal Gift Box'],de:['Starre Deckel-Boden-Box','Magnetverschluss-Box','Schubladen-Box','Sonderform-Box','Tee & Lebensmittel-Box','Saisonale Geschenkbox'],es:['Caja Tapa y Base','Caja Cierre Magnetico','Caja Cajon','Caja Forma Especial','Caja Te y Alimentos','Caja Estacional']};
+  var fixedCats=FIXED_CATS[lang]||FIXED_CATS.zh;
   var cidx=allProducts.indexOf(p);
   document.getElementById('pdpCatH').textContent=L.cat||'';
   var ch='';
   allProducts.forEach(function(ap,i){
-    var at=(ap.translations||[]).find(function(t){return t.lang===lang;})||(ap.translations||[]).find(function(t){return t.lang==='zh';})||{};
-    ch+='<a class="pcat'+(i===cidx?' on':'')+'" onclick="switchProduct('+i+');return false;" href="#">'+(at.name||ap.slug||'')+'</a>';
+    var name=i<fixedCats.length?fixedCats[i]:((ap.translations||[]).find(function(t){return t.lang===lang;})||(ap.translations||[]).find(function(t){return t.lang==='zh';})||{}).name||ap.slug||'';
+    ch+='<a class="pcat'+(i===cidx?' on':'')+'" onclick="switchProduct('+i+');return false;" href="#">'+name+'</a>';
   });
   document.getElementById('pdpCats').innerHTML=ch;
 
