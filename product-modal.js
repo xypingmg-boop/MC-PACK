@@ -7,42 +7,14 @@ var API='https://508mc-production.up.railway.app';
 function getLang(){return['de','en','es'].find(function(l){return document.body.classList.contains('lang-'+l);})||'zh';}
 function getTrans(p){var lang=getLang();return(p.translations||[]).find(function(t){return t.lang===lang;})||(p.translations||[]).find(function(t){return t.lang==='zh';})||{};}
 
-var CATS={
-  zh:['天地盖礼盒','磁吸翻盖礼盒','抽屉式礼盒','异形创意礼盒','茶叶/食品礼盒','节日主题礼盒'],
-  en:['Rigid Lid & Base Box','Magnetic Closure Box','Drawer Slide Box','Custom Shape Box','Tea & Food Gift Box','Seasonal Gift Box'],
-  de:['Starre Deckel-Boden-Box','Magnetverschluss-Box','Schubladen-Box','Sonderform-Box','Tee & Lebensmittel-Box','Saisonale Geschenkbox'],
-  es:['Caja Tapa y Base','Caja Cierre Magnetico','Caja Cajon','Caja Forma Especial','Caja Te y Alimentos','Caja Estacional']
-};
-
 async function loadProducts(){
   try{
     var res=await fetch(API+'/api/products');
     var data=await res.json();
     allProducts=data.filter(function(p){return p.visible!==false;}).sort(function(a,b){return(a.sort||99)-(b.sort||99);});
-    renderCards();
     bindCards();
     injectShell();
   }catch(e){console.warn('api err',e);}
-}
-
-function renderCards(){
-  var grid=document.getElementById('productsGrid');
-  if(!grid)return;
-  grid.innerHTML='';
-  allProducts.forEach(function(p,idx){
-    var lang=getLang();
-    var trans=(p.translations||[]).find(function(t){return t.lang===lang;})||(p.translations||[]).find(function(t){return t.lang==='zh';})||{};
-    var card=document.createElement('div');
-    card.className='product-card';
-    card.style.cursor='pointer';
-    card.innerHTML=
-      '<div class="product-icon">'+(p.icon||'📦')+'</div>'+
-      '<div class="product-name">'+(trans.name||p.slug||'')+'</div>'+
-      '<p class="product-desc">'+(trans.description||'')+'</p>'+
-      '<div class="product-arrow">→</div>';
-    card.addEventListener('click',function(){openPdp(p);});
-    grid.appendChild(card);
-  });
 }
 
 function bindCards(){
@@ -56,7 +28,6 @@ function bindCards(){
 
 function injectShell(){
   if(document.getElementById('pdpOverlay'))return;
-
   var style=document.createElement('style');
   style.textContent=
     '#pdpOverlay{display:none;position:fixed;inset:0;z-index:2000;background:#fff;overflow-y:auto;}'+
@@ -120,7 +91,7 @@ function injectShell(){
     '#pdpLightbox{display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.93);align-items:center;justify-content:center;}'+
     '#pdpLightbox.on{display:flex;}'+
     '#pdpLbImg{max-width:85vw;max-height:85vh;object-fit:contain;}'+
-    '#lbPrev,#lbNext{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:36px;width:54px;height:54px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}'+
+    '#lbPrev,#lbNext{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:36px;width:54px;height:54px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;}'+
     '#lbPrev{left:20px;}#lbNext{right:20px;}'+
     '#lbPrev:hover,#lbNext:hover{background:rgba(255,255,255,0.3);}'+
     '#lbClose{position:absolute;top:16px;right:20px;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;}'+
@@ -133,9 +104,7 @@ function injectShell(){
   div.innerHTML=
     '<div id="pdpTopBar">'+
       '<div class="brand">MICAI <em>Packaging</em></div>'+
-      '<button class="backbtn" onclick="closePdp()">'+
-        '&#x2715; <span class="zh">返回</span><span class="en">Back</span><span class="de">Zuruck</span><span class="es">Volver</span>'+
-      '</button>'+
+      '<button class="backbtn" onclick="closePdp()">&#x2715; <span class="zh">返回</span><span class="en">Back</span><span class="de">Zuruck</span><span class="es">Volver</span></button>'+
     '</div>'+
     '<div id="pdpBread"><span class="zh">产品中心</span><span class="en">Products</span><span class="de">Produkte</span><span class="es">Productos</span> &rsaquo; <b id="pdpCrumb"></b></div>'+
     '<div id="pdpWrap">'+
@@ -148,67 +117,35 @@ function injectShell(){
       '<div id="pdpContent">'+
         '<div id="pdpGrid">'+
           '<div id="pdpThumbs"></div>'+
-          '<div>'+
-            '<img id="pdpImg" src="" alt=""/>'+
-            '<div id="pdpEmoji"></div>'+
-            '<div id="pdpZoomHint"><span class="zh">点击放大</span><span class="en">Click to zoom</span><span class="de">Zum Vergrossern</span><span class="es">Clic para ampliar</span></div>'+
-          '</div>'+
+          '<div><img id="pdpImg" src="" alt=""/><div id="pdpEmoji"></div><div id="pdpZoomHint"><span class="zh">点击放大</span><span class="en">Click to zoom</span><span class="de">Vergrossern</span><span class="es">Ampliar</span></div></div>'+
           '<div id="pdpInfo">'+
             '<div id="pdpBadge"></div>'+
             '<div id="pdpTitle"></div>'+
             '<div id="pdpBrandLine"></div>'+
             '<div id="pdpRating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="rtxt" id="pdpRtxt"></span></div>'+
             '<hr style="border:none;border-top:1px solid #e8e8e8;margin:10px 0"/>'+
-            '<div id="pdpPricebox" style="display:none">'+
-              '<div class="plabel" id="pdpPlabel"></div>'+
-              '<span class="pprice" id="pdpPrice"></span>'+
-              '<span class="porig" id="pdpOrig" style="display:none"></span>'+
-              '<span class="pdisc" id="pdpDisc" style="display:none"></span>'+
-              '<div class="pnote" id="pdpPnote"></div>'+
-            '</div>'+
+            '<div id="pdpPricebox" style="display:none"><div class="plabel" id="pdpPlabel"></div><span class="pprice" id="pdpPrice"></span><span class="porig" id="pdpOrig" style="display:none"></span><span class="pdisc" id="pdpDisc" style="display:none"></span><div class="pnote" id="pdpPnote"></div></div>'+
             '<div id="pdpAboutH"></div>'+
             '<ul id="pdpBullets"></ul>'+
             '<p id="pdpDescTxt"></p>'+
             '<div id="pdpSpecH" style="display:none"></div>'+
             '<div id="pdpSpecBody"></div>'+
-            '<div id="pdpBuyBox">'+
-              '<a id="pdpCta1" href="#contact" onclick="closePdp()"></a>'+
-              '<a id="pdpCta2" href="#contact" onclick="closePdp()"></a>'+
-              '<div id="pdpShipNote"></div>'+
-            '</div>'+
+            '<div id="pdpBuyBox"><a id="pdpCta1" href="#contact" onclick="closePdp()"></a><a id="pdpCta2" href="#contact" onclick="closePdp()"></a><div id="pdpShipNote"></div></div>'+
           '</div>'+
         '</div>'+
-        '<div id="pdpDetailSec" style="display:none">'+
-          '<div id="pdpDetailH"></div>'+
-          '<div id="pdpDetailBody"></div>'+
-        '</div>'+
+        '<div id="pdpDetailSec" style="display:none"><div id="pdpDetailH"></div><div id="pdpDetailBody"></div></div>'+
       '</div>'+
     '</div>'+
-    '<div id="pdpLightbox">'+
-      '<button id="lbClose" onclick="document.getElementById(\'pdpLightbox\').classList.remove(\'on\')">&#x2715;</button>'+
-      '<button id="lbPrev" onclick="lbMove(-1)">&#8249;</button>'+
-      '<img id="pdpLbImg" src=""/>'+
-      '<button id="lbNext" onclick="lbMove(1)">&#8250;</button>'+
-      '<div id="lbCounter"></div>'+
-    '</div>';
+    '<div id="pdpLightbox"><button id="lbClose" onclick="document.getElementById(\'pdpLightbox\').classList.remove(\'on\')">&#x2715;</button><button id="lbPrev" onclick="lbMove(-1)">&#8249;</button><img id="pdpLbImg" src=""/><button id="lbNext" onclick="lbMove(1)">&#8250;</button><div id="lbCounter"></div></div>';
   document.body.appendChild(div);
 
-  document.getElementById('pdpLightbox').addEventListener('click',function(e){
-    if(e.target===this)this.classList.remove('on');
-  });
-  document.getElementById('pdpImg').addEventListener('click',function(){
-    openLightbox(this.src);
-  });
-  document.getElementById('pdpZoomHint').addEventListener('click',function(){
-    openLightbox(document.getElementById('pdpImg').src);
-  });
+  document.getElementById('pdpLightbox').addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
+  document.getElementById('pdpImg').addEventListener('click',function(){openLightbox(this.src);});
+  document.getElementById('pdpZoomHint').addEventListener('click',function(){openLightbox(document.getElementById('pdpImg').src);});
   document.addEventListener('keydown',function(e){
     var lb=document.getElementById('pdpLightbox');
     if(e.key==='Escape'){lb.classList.remove('on');if(document.getElementById('pdpOverlay').style.display!=='none')closePdp();}
-    if(lb.classList.contains('on')){
-      if(e.key==='ArrowLeft')lbMove(-1);
-      if(e.key==='ArrowRight')lbMove(1);
-    }
+    if(lb.classList.contains('on')){if(e.key==='ArrowLeft')lbMove(-1);if(e.key==='ArrowRight')lbMove(1);}
   });
 }
 
@@ -221,19 +158,14 @@ function lbMove(dir){
 
 function openLightbox(src){
   if(!src||src===window.location.href)return;
-  lbIdx=lbImgs.indexOf(src);
-  if(lbIdx<0)lbIdx=0;
+  lbIdx=lbImgs.indexOf(src);if(lbIdx<0)lbIdx=0;
   document.getElementById('pdpLbImg').src=lbImgs[lbIdx]||src;
   document.getElementById('lbCounter').textContent=(lbIdx+1)+' / '+lbImgs.length;
   document.getElementById('pdpLightbox').classList.add('on');
 }
 
 window.switchProduct=function(idx){if(allProducts[idx])openPdp(allProducts[idx]);};
-window.closePdp=function(){
-  var ov=document.getElementById('pdpOverlay');
-  if(ov){ov.style.display='none';}
-  document.body.style.overflow='';
-};
+window.closePdp=function(){var ov=document.getElementById('pdpOverlay');if(ov)ov.style.display='none';document.body.style.overflow='';};
 window.closeModal=window.closePdp;
 window.lbMove=lbMove;
 
@@ -247,11 +179,16 @@ window.openPdp=function(p){
     es:{cat:'Categorias',feat:'Por que MICAI',feats:[['🏭','Fabrica propia'],['📦','MOQ 300 uds'],['🌿','Certificado FSC'],['✈️','Exportacion global'],['⏱️','Muestra en 7 dias']],sideP:'Necesita asesoria?',sideA:'Consulta gratuita',badge:'MICAI Packaging',brand:'Marca: MICAI Packaging (Wenzhou)',rating:'4.9 · 500+ clientes',plabel:'Cotizacion desde',pnote:'Venta directa · MOQ bajo',about:'Sobre este producto',specs:'Opciones',detail:'Detalles',ship:'Asesor en 24h · Muestra 7 dias',cta1:'Solicitar cotizacion',cta2:'Contactenos'}
   }[lang]||{};
 
-  var cats=CATS[lang]||CATS.zh;
+  // 侧边栏：动态显示所有后台产品
   var cidx=allProducts.indexOf(p);
   document.getElementById('pdpCatH').textContent=L.cat||'';
-  var ch='';cats.forEach(function(c,i){ch+='<a class="pcat'+(i===cidx?' on':'')+'" onclick="switchProduct('+i+');return false;" href="#">'+c+'</a>';});
+  var ch='';
+  allProducts.forEach(function(ap,i){
+    var at=(ap.translations||[]).find(function(t){return t.lang===lang;})||(ap.translations||[]).find(function(t){return t.lang==='zh';})||{};
+    ch+='<a class="pcat'+(i===cidx?' on':'')+'" onclick="switchProduct('+i+');return false;" href="#">'+(at.name||ap.slug||'')+'</a>';
+  });
   document.getElementById('pdpCats').innerHTML=ch;
+
   document.getElementById('pdpFeatH').textContent=L.feat||'';
   var fh='';(L.feats||[]).forEach(function(f){fh+='<div class="pfeat"><span>'+f[0]+'</span><span>'+f[1]+'</span></div>';});
   document.getElementById('pdpFeats').innerHTML=fh;
@@ -270,11 +207,11 @@ window.openPdp=function(p){
     document.getElementById('pdpPlabel').textContent=L.plabel||'';
     document.getElementById('pdpPrice').textContent='¥'+p.price;
     document.getElementById('pdpPnote').textContent=L.pnote||'';
-    var oe=document.getElementById('pdpOrig'),de2=document.getElementById('pdpDisc');
+    var oe=document.getElementById('pdpOrig'),dc=document.getElementById('pdpDisc');
     if(p.originalPrice&&parseFloat(p.originalPrice)>parseFloat(p.price)){
       oe.textContent='¥'+p.originalPrice;oe.style.display='inline';
-      de2.textContent='(-'+Math.round((1-parseFloat(p.price)/parseFloat(p.originalPrice))*100)+'%)';de2.style.display='inline';
-    }else{oe.style.display='none';de2.style.display='none';}
+      dc.textContent='(-'+Math.round((1-parseFloat(p.price)/parseFloat(p.originalPrice))*100)+'%)';dc.style.display='inline';
+    }else{oe.style.display='none';dc.style.display='none';}
   }else{pb.style.display='none';}
 
   document.getElementById('pdpAboutH').textContent=L.about||'';
@@ -307,11 +244,7 @@ window.openPdp=function(p){
     imgs.forEach(function(url,i){
       var d=document.createElement('div');d.className='pthumb'+(i===0?' on':'');
       d.innerHTML='<img src="'+url+'"/>';
-      d.addEventListener('click',function(){
-        imgEl.src=url;lbIdx=i;
-        th.querySelectorAll('.pthumb').forEach(function(t){t.classList.remove('on');});
-        d.classList.add('on');
-      });
+      d.addEventListener('click',function(){imgEl.src=url;lbIdx=i;th.querySelectorAll('.pthumb').forEach(function(t){t.classList.remove('on');});d.classList.add('on');});
       th.appendChild(d);
     });
   }else{imgEl.style.display='none';emoEl.style.display='flex';emoEl.textContent=p.icon||'📦';}
