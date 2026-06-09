@@ -137,9 +137,11 @@ function injectPdpShell(){
 
   document.body.appendChild(overlay);
   document.addEventListener('keydown',function(e){
-    if(e.key==='Escape'){
-      document.getElementById('pdpLightbox').classList.remove('on');
-      closePdp();
+    var lb=document.getElementById('pdpLightbox');
+    if(e.key==='Escape'){lb.classList.remove('on');if(document.getElementById('pdpOverlay').style.display!=='none')closePdp();}
+    if(lb.classList.contains('on')){
+      if(e.key==='ArrowLeft')lbPrev(e);
+      if(e.key==='ArrowRight')lbNext(e);
     }
   });
 }
@@ -232,6 +234,7 @@ window.openPdp=function(p){
 
   // images
   var imgs=(p.images&&p.images.filter(Boolean).length)?p.images.filter(Boolean):(p.imageUrl?[p.imageUrl]:[]);
+  window._lbImgs=imgs;
   var imgEl=document.getElementById('pdpImg'),emojiEl=document.getElementById('pdpEmoji');
   var th=document.getElementById('pdpThumbs');th.innerHTML='';
   if(imgs.length){
@@ -262,11 +265,18 @@ window.closePdp=function(){
   document.body.style.overflow='';
 };
 window.closeModal=window.closePdp;
+window._lbImgs=[];
+window._lbIdx=0;
 window.openLightbox=function(src){
   if(!src||src===window.location.href)return;
-  document.getElementById('pdpLbImg').src=src;
+  var imgs=window._lbImgs;
+  var idx=imgs.indexOf(src);
+  window._lbIdx=idx>=0?idx:0;
+  document.getElementById('pdpLbImg').src=imgs[window._lbIdx]||src;
   document.getElementById('pdpLightbox').classList.add('on');
 };
+window.lbPrev=function(e){e.stopPropagation();var imgs=window._lbImgs;if(!imgs.length)return;window._lbIdx=(window._lbIdx-1+imgs.length)%imgs.length;document.getElementById('pdpLbImg').src=imgs[window._lbIdx];};
+window.lbNext=function(e){e.stopPropagation();var imgs=window._lbImgs;if(!imgs.length)return;window._lbIdx=(window._lbIdx+1)%imgs.length;document.getElementById('pdpLbImg').src=imgs[window._lbIdx];};
 
 loadProducts();
 })();
