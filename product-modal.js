@@ -19,9 +19,30 @@ async function loadProducts(){
     var res=await fetch(API+'/api/products');
     var data=await res.json();
     allProducts=data.filter(function(p){return p.visible!==false;}).sort(function(a,b){return(a.sort||99)-(b.sort||99);});
+    renderCards();
     bindCards();
     injectShell();
   }catch(e){console.warn('api err',e);}
+}
+
+function renderCards(){
+  var grid=document.getElementById('productsGrid');
+  if(!grid)return;
+  grid.innerHTML='';
+  allProducts.forEach(function(p,idx){
+    var lang=getLang();
+    var trans=(p.translations||[]).find(function(t){return t.lang===lang;})||(p.translations||[]).find(function(t){return t.lang==='zh';})||{};
+    var card=document.createElement('div');
+    card.className='product-card';
+    card.style.cursor='pointer';
+    card.innerHTML=
+      '<div class="product-icon">'+(p.icon||'📦')+'</div>'+
+      '<div class="product-name">'+(trans.name||p.slug||'')+'</div>'+
+      '<p class="product-desc">'+(trans.description||'')+'</p>'+
+      '<div class="product-arrow">→</div>';
+    card.addEventListener('click',function(){openPdp(p);});
+    grid.appendChild(card);
+  });
 }
 
 function bindCards(){
