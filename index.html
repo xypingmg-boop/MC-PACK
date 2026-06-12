@@ -625,6 +625,26 @@
 
     .footer-copy { font-size: 12px; color: rgba(250,246,240,0.2); letter-spacing: 0.05em; font-family: 'Jost', sans-serif; }
 
+
+    /* DROPDOWN */
+    .nav-item-dropdown { position: relative; }
+    .nav-dropdown {
+      display: none; position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%); min-width: 200px;
+      background: rgba(18,14,8,0.97); border: 1px solid rgba(201,169,110,0.2);
+      backdrop-filter: blur(12px); padding: 8px 0; z-index: 200;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+    }
+    .nav-item-dropdown:hover .nav-dropdown { display: block; }
+    .nav-dropdown a {
+      display: block; padding: 9px 20px; font-size: 13px;
+      color: rgba(250,246,240,0.7); text-decoration: none;
+      font-family: 'Jost', sans-serif; transition: all 0.2s;
+      border-left: 2px solid transparent;
+    }
+    .nav-dropdown a:hover { color: var(--gold); background: rgba(201,169,110,0.08); border-left-color: var(--gold); }
+    .nav-dropdown-arrow { font-size: 10px; margin-left: 4px; opacity: 0.6; }
+
     /* ── ANIMATIONS ── */
     .reveal { opacity: 1; transform: translateY(0); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -682,7 +702,20 @@
   <div class="nav-right">
     <ul class="nav-links">
       <li><a href="#home"><span class="zh">首页</span><span class="en">Home</span><span class="de">Start</span><span class="es">Inicio</span></a></li>
-      <li><a href="#products"><span class="zh">产品中心</span><span class="en">Products</span><span class="de">Produkte</span><span class="es">Productos</span><span class="es">Productos</span></a></li>
+      <li class="nav-item-dropdown">
+        <a href="#products">
+          <span class="zh">产品中心</span><span class="en">Products</span><span class="de">Produkte</span><span class="es">Productos</span>
+          <span class="nav-dropdown-arrow">▾</span>
+        </a>
+        <div class="nav-dropdown" id="navDropdown">
+          <a href="#products" onclick="triggerProduct(0)"><span class="zh">天地盖礼盒</span><span class="en">Rigid Lid &amp; Base Box</span><span class="de">Starre Deckel-Boden-Box</span><span class="es">Caja Tapa y Base</span></a>
+          <a href="#products" onclick="triggerProduct(1)"><span class="zh">磁吸翻盖礼盒</span><span class="en">Magnetic Closure Box</span><span class="de">Magnetverschluss-Box</span><span class="es">Caja Cierre Magnético</span></a>
+          <a href="#products" onclick="triggerProduct(2)"><span class="zh">抽屉式礼盒</span><span class="en">Drawer Slide Box</span><span class="de">Schubladen-Box</span><span class="es">Caja Cajón</span></a>
+          <a href="#products" onclick="triggerProduct(3)"><span class="zh">异形创意礼盒</span><span class="en">Custom Shape Box</span><span class="de">Sonderform-Box</span><span class="es">Caja Forma Especial</span></a>
+          <a href="#products" onclick="triggerProduct(4)"><span class="zh">茶叶/食品礼盒</span><span class="en">Tea &amp; Food Gift Box</span><span class="de">Tee &amp; Lebensmittel-Box</span><span class="es">Caja Té y Alimentos</span></a>
+          <a href="#products" onclick="triggerProduct(5)"><span class="zh">节日主题礼盒</span><span class="en">Seasonal Gift Box</span><span class="de">Saisonale Geschenkbox</span><span class="es">Caja Estacional</span></a>
+        </div>
+      </li>
       <li><a href="#process"><span class="zh">生产工艺</span><span class="en">Process</span><span class="de">Prozess</span><span class="es">Proceso</span><span class="es">Proceso</span></a></li>
       <li><a href="#why"><span class="zh">关于我们</span><span class="en">About</span><span class="de">Über uns</span><span class="es">Nosotros</span><span class="es">Nosotros</span></a></li>
       <li><a href="#contact"><span class="zh">联系我们</span><span class="en">Contact</span><span class="de">Kontakt</span><span class="es">Contacto</span></a></li>
@@ -1353,6 +1386,13 @@
     }
   }
   setLang('zh');
+
+  function triggerProduct(idx) {
+    setTimeout(function() {
+      if (window.switchProduct) window.switchProduct(idx);
+    }, 300);
+  }
+
 
   // SCROLL REVEAL
   const observer = new IntersectionObserver((entries) => {
