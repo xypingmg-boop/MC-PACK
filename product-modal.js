@@ -88,6 +88,8 @@ function injectShell(){
     '#pdpDetailSec{margin-top:32px;padding-top:24px;border-top:1px solid #e8e8e8;}'+
     '#pdpDetailH{font-size:17px;font-weight:700;color:#0F1111;border-bottom:2px solid #e77600;display:inline-block;padding-bottom:6px;margin-bottom:14px;}'+
     '#pdpDetailBody{font-size:14px;color:#333;line-height:1.9;}'+
+    '#pdpDetailBody img{max-width:100%;border-radius:8px;margin:8px 0;}'+
+    '#pdpDetailBody video{max-width:100%;width:100%;border-radius:8px;margin:8px 0;display:block;}'+
     '#pdpLightbox{display:none;position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,0.93);align-items:center;justify-content:center;}'+
     '#pdpLightbox.on{display:flex;}'+
     '#pdpLbImg{max-width:85vw;max-height:85vh;object-fit:contain;}'+
