@@ -186,7 +186,8 @@ window.openPdp=function(p){
   document.getElementById('pdpCatH').textContent=L.cat||'';
   var ch='';
   allProducts.forEach(function(ap,i){
-    var name=i<fixedCats.length?fixedCats[i]:((ap.translations||[]).find(function(t){return t.lang===lang;})||(ap.translations||[]).find(function(t){return t.lang==='zh';})||{}).name||ap.slug||'';
+    var catN=ap.categoryName&&(ap.categoryName[lang]||ap.categoryName['zh'])||'';
+    var name=catN||(i<fixedCats.length?fixedCats[i]:((ap.translations||[]).find(function(t){return t.lang===lang;})||(ap.translations||[]).find(function(t){return t.lang==='zh';})||{}).name||ap.slug||'');
     ch+='<a class="pcat'+(i===cidx?' on':'')+'" onclick="switchProduct('+i+');return false;" href="#">'+name+'</a>';
   });
   document.getElementById('pdpCats').innerHTML=ch;
